@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ShoppingCartServiceService } from '../Services/shopping-cart-service.service';
 import { FakestoreProductContract } from '../Contracts/FakestoreProductContract';
+import { NotificationService } from '../Services/notification.service';
 
 @Component({
   selector: 'app-shopping-modal-cart',
@@ -9,7 +10,7 @@ import { FakestoreProductContract } from '../Contracts/FakestoreProductContract'
 })
 export class ShoppingModalCartComponent implements OnInit {
 
-  constructor(private cartService: ShoppingCartServiceService) { }
+  constructor(private cartService: ShoppingCartServiceService, private notifier: NotificationService) { }
 
   CartItems: FakestoreProductContract[] = [];
 
@@ -23,7 +24,7 @@ export class ShoppingModalCartComponent implements OnInit {
 
   // Remove Cart Item
   public RemoveClick(id: number) {
-    alert(id + " Product Deleted.....");
+    this.notifier.showSuccess('Product removed from cart');
     this.CartItems.splice(id, 1);
   }
 
@@ -50,16 +51,16 @@ export class ShoppingModalCartComponent implements OnInit {
 
   purchaseSuccess: boolean = false;
   placedItems: FakestoreProductContract[] = [];
-  Total:number=0;
+  Total: number = 0;
   public PlaceOrder() {
     if (this.CartItems.length === 0) {
-      alert('Cannot place empty order!');
+      this.notifier.showError('Cannot place empty order!');
       return;
     }
     this.purchaseSuccess = true;
     this.placedItems = this.CartItems.map(item => ({ ...item }));
     this.CartItems.splice(0, this.CartItems.length);
-    this.Total=this.placedItems.reduce<number>((prev, product) => prev + (product.price * product.quantity), 0);
+    this.Total = this.placedItems.reduce<number>((prev, product) => prev + (product.price * product.quantity), 0);
   }
 
 }

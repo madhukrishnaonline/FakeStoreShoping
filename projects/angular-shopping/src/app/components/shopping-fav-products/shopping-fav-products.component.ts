@@ -3,6 +3,7 @@ import { FakestoreServiceAPI } from './../Services/service.fakestoreapi';
 import { Component, OnInit } from '@angular/core';
 import { FakestoreProductContract } from '../Contracts/FakestoreProductContract';
 import { ActivatedRoute } from '@angular/router';
+import { NotificationService } from '../Services/notification.service';
 
 @Component({
   selector: 'app-shopping-fav-products',
@@ -12,7 +13,7 @@ import { ActivatedRoute } from '@angular/router';
 export class ShoppingFavProductsComponent implements OnInit {
   public Products: FakestoreProductContract[] = [];
 
-  constructor(private products: FakestoreServiceAPI, private route: ActivatedRoute, private cartService: ShoppingCartServiceService) { }
+  constructor(private products: FakestoreServiceAPI, private route: ActivatedRoute, private cartService: ShoppingCartServiceService, private notifier: NotificationService) { }
 
   public ErrorText = null;
   public isFetching: boolean = false;
@@ -28,12 +29,11 @@ export class ShoppingFavProductsComponent implements OnInit {
   }
 
   public AddToCart(id: number) {
-    alert("Product Added to Cart " + id);
+    this.notifier.showSuccess('Product added to cart');
     this.cartService.addToCart(id);
   }//AddToCart
 
-  public UnList(id:number)
-  {
+  public UnList(id: number) {
     this.Products.pop();
   }
 

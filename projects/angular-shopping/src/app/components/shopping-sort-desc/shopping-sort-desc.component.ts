@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FakestoreProductContract } from '../Contracts/FakestoreProductContract';
 import { FakestoreServiceAPI } from '../Services/service.fakestoreapi';
 import { ShoppingCartServiceService } from '../Services/shopping-cart-service.service';
+import { NotificationService } from '../Services/notification.service';
 
 @Component({
   selector: 'app-shopping-sort-desc',
@@ -9,7 +10,7 @@ import { ShoppingCartServiceService } from '../Services/shopping-cart-service.se
   styleUrls: ['./shopping-sort-desc.component.css']
 })
 export class ShoppingSortDescComponent implements OnInit {
-  constructor(private categories: FakestoreServiceAPI,private cartService:ShoppingCartServiceService) {
+  constructor(private categories: FakestoreServiceAPI, private cartService: ShoppingCartServiceService, private notifier: NotificationService) {
 
   }
 
@@ -31,14 +32,13 @@ export class ShoppingSortDescComponent implements OnInit {
   }
 
   public AddToCart(id: number) {
-    alert(id+" Product Added to Cart");
+    this.notifier.showSuccess('Product added to cart');
     this.cartService.addToCart(id);
   }
 
-  public WishListItems:FakestoreProductContract[] = [];
-  public AddToWishList(id:number)
-  {
-    alert("Product Added to WishList "+id);
+  public WishListItems: FakestoreProductContract[] = [];
+  public AddToWishList(id: number) {
+    this.notifier.showSuccess('Product added to wishlist');
     this.cartService.addToWishList(id);
   }//AddToWishList
 }

@@ -1,8 +1,13 @@
 .notification-wrapper{
   position: fixed;
   bottom: 16px;
-  right: 16px;
+  left: 50%;
+  transform: translateX(-50%);
   z-index: 1200;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  pointer-events: none;
 }
 .notification{
   min-width: 240px;
@@ -13,6 +18,7 @@
   box-shadow: 0 6px 20px rgba(0,0,0,0.15);
   display:flex;
   align-items:center;
+  pointer-events: auto;
 }
 .notification .message{
   flex:1;

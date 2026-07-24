@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { FakestoreProductContract } from '../Contracts/FakestoreProductContract';
 import { FakestoreServiceAPI } from '../Services/service.fakestoreapi';
 import { ShoppingCartServiceService } from '../Services/shopping-cart-service.service';
+import { NotificationService } from '../Services/notification.service';
 
 @Component({
   selector: 'app-shopping-details',
@@ -23,7 +24,7 @@ export class ShoppingDetailsComponent implements OnInit {
 
   public id: any;
 
-  constructor(private route: ActivatedRoute, private fakestore: FakestoreServiceAPI, private cartService: ShoppingCartServiceService) { }
+  constructor(private route: ActivatedRoute, private fakestore: FakestoreServiceAPI, private cartService: ShoppingCartServiceService, private notifier: NotificationService) { }
 
 
   ngOnInit(): void {
@@ -44,18 +45,18 @@ export class ShoppingDetailsComponent implements OnInit {
   }
 
   public AddToCart(id: number) {
-    alert(id + " Product Added to Cart");
+    this.notifier.showSuccess('Product added to cart');
     this.cartService.addToCart(id);
   }
 
   public WishListItems: FakestoreProductContract[] = [];
   public AddToWishList(id: number) {
-    alert("Product Added to WishList " + id);
+    this.notifier.showSuccess('Product added to wishlist');
     this.cartService.addToWishList(id);
   }//AddToWishList
 
-  purchaseSuccess:boolean=false;
-  public BuyNow(){
-    this.purchaseSuccess=true;
+  purchaseSuccess: boolean = false;
+  public BuyNow() {
+    this.purchaseSuccess = true;
   }
 }
