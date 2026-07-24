@@ -1,0 +1,90 @@
+<div id="AddProduct">
+    <div class="row">
+        <div class="col-6">
+            <div class="border shadow p-3 m-2" id="enterProduct">
+                <form action="" method="post" [formGroup]="frmRegister" (submit)="SubmitClick()">
+                    <h1>Add a Product</h1>
+                    <dl>
+                        <dt>Product Title</dt>
+                        <dd>
+                            <input type="text" name="title" formControlName="title" class="form-control">
+                        </dd>
+                        <dd class="text-danger" *ngIf="title?.touched && title?.invalid">
+                            <div>Title Required</div>
+                        </dd>
+                        <dt>Product Price</dt>
+                        <dd>
+                            <input type="text" name="price" formControlName="price" class="form-control">
+                        </dd>
+                        <dd class="text-danger" *ngIf="price?.touched && price?.invalid">
+                            <div>Price Required</div>
+                        </dd>
+                        <dt>Product Description</dt>
+                        <dd>
+                            <textarea name="description" formControlName="description" cols="30" rows="5"></textarea>
+                        </dd>
+                        <dd class="text-danger" *ngIf="description?.touched && description?.invalid">
+                            <div>Description Required</div>
+                        </dd>
+                        <dt>Product Image</dt>
+                        <dd>
+                            <input type="file" name="image" formControlName="image">
+                        </dd>
+                        <dd class="text-danger" *ngIf="image?.touched && image?.invalid">
+                            <div>Image Required</div>
+                        </dd>
+                        <dt>Select Category</dt>
+                        <dd>
+                            <select name="category" formControlName="category" class="form-select">
+                                <option value="electronics">Electronics</option>
+                                <option value="jewelery">Jewelery</option>
+                                <option value="men's clothing">Men's Clothing</option>
+                                <option value="women's clothing">Women's Clothing</option>
+                            </select>
+                        </dd>
+                        <dd class="text-danger" *ngIf="category?.touched && category?.invalid">
+                            <div>Category Required</div>
+                        </dd>
+                    </dl>
+                    <div class="d-grid mt-3" id="Add">
+                        <button class="btn btn-primary" [disabled]="frmRegister.invalid">Add Product</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="col-6">
+            <div class="border p-2 mb-3 mt-2" id="note">
+                <p><span class="bi bi-info-circle-fill text-warning"></span>
+                    <strong><i> Note: If you send a product
+                            data, <u>it will return you an object with a new id below <span
+                                    class="bi bi-arrow-down-circle-fill"></span>.</u>
+                            remember that nothing in real will insert into the database.</i>
+                    </strong>
+                </p>
+            </div>
+            <div id="productDetails">
+                <h2><span class="bi bi-arrow-left"></span><span class="bi bi-arrow-up"></span> Add a Product to See the Details</h2>
+                <dl>
+                    <div *ngIf="isFetching"><span class="spinner-border spinner-border-sm"></span></div>
+                    <dt>Category</dt>
+                    <dd>
+                        <h1>{{Product.category}}</h1>
+                    </dd>
+                    <dt>Product Id</dt>
+                    <dd>{{Product.id}}</dd>
+                    <dt>Product Title</dt>
+                    <dd>{{Product.title}}</dd>
+                    <dt>Product</dt>
+                    <dd>{{Product.image}}</dd>
+                    <dt>Product Price</dt>
+                    <dd>{{Product.price | currency}}</dd>
+                    <dt>Product Description</dt>
+                    <dd>{{Product.description}}</dd>
+                </dl>
+            </div>
+            <div class="mt-5" id="logout">
+                <button type="button" class="btn btn-danger" (click)="Logout()">Logout</button>
+            </div>
+        </div>
+    </div>
+</div>

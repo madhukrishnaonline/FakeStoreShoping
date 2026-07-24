@@ -1,0 +1,69 @@
+.card{
+    max-width: 400px;
+}
+
+.card:hover{
+    box-shadow: 2px 5px 5px gray;
+}
+
+a
+{
+    text-decoration: none;
+}
+.more
+{
+    margin-left: 280px;
+}
+#wishlist
+{
+    margin-left: 90%;
+}
+.fetching,.error{
+    font-size: 30px;
+    margin-left: 250px;
+    margin-top: 180px;
+}
+/* IOS Devices */
+@media only screen and (min-width:320px) and (max-width:350px) {
+    .card {
+        max-width: 300px;
+    }
+
+    .more {
+        margin-left: 150px;
+    }
+
+    .fetching,
+    .error {
+        font-size: 30px;
+        margin-left: 75px;
+        margin-top: 150px;
+    }
+}
+
+/*  Android Devices */
+@media only screen and (min-width:350px) and (max-width:480px) {
+    .card {
+        max-width: 400px;
+    }
+
+    .more {
+        margin-left: 200px;
+    }
+
+    .fetching,
+    .error {
+        font-size: 30px;
+        margin-left: 75px;
+        margin-top: 150px;
+    }
+}
+
+@media only screen and (min-width:750px) and (max-width:900px) {
+    .fetching,
+    .error {
+        font-size: 30px;
+        margin-left: 100px;
+        margin-top: 150px;
+    }
+}

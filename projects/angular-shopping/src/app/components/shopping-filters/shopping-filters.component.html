@@ -1,0 +1,21 @@
+<nav class="navbar" id="filters">
+    <div class="border-2 border-secondary">
+        <div class="nav border p-3 shadow-sm">
+            <h1 class="text-center">Filters</h1>
+            <ul class="list-unstyled text-center">
+                <li class="list">
+                    <a routerLink="sorting/products" [queryParams]="{sort:'desc'}">REVERSE ORDER</a>
+                </li>
+                <li class="list">
+                    <a routerLink="limited">LIMIT PRODUCTS</a>
+                </li>
+                <li class="list"><a routerLink="add/product">Add a Product</a></li>
+                <li class="list"><a routerLink="products">ALL</a></li>
+                <li class="list"><a routerLink="electronics">ELECTRONICS</a></li>
+                <li class="list"><a routerLink="jewelery">JEWELERY</a></li>
+                <li class="list"><a routerLink="mens">MEN'S CLOTHING</a></li>
+                <li class="list"><a routerLink="womens">WOMEN'S CLOTHING</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>

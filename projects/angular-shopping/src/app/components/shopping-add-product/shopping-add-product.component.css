@@ -1,0 +1,207 @@
+#AddProduct {
+    height: 700px;
+}
+
+.bi-arrow-up {
+    display: none;
+}
+#note{
+    width: 350px;
+}
+
+#Add{
+    cursor:not-allowed;
+}
+
+/* IOS & Android Devices */
+@media only screen and (min-width:320px) and (max-width:350px) {
+    .row {
+        display: grid;
+    }
+
+    #enterProduct {
+        width: 270px;
+    }
+
+    #AddProduct {
+        height: 1050px;
+    }
+
+    #logout {
+        display: grid;
+        text-align: center;
+    }
+
+    #note {
+        width: 280px;
+    }
+
+    #productDetails {
+        width: 280px;
+    }
+
+    .bi-arrow-left {
+        display: none;
+    }
+
+    .bi-arrow-up {
+        display: inline;
+    }
+
+}
+
+/* Android Devices */
+@media only screen and (min-width:350px) and (max-width:400px) {
+    .row {
+        display: grid;
+    }
+
+    #enterProduct {
+        width: 320px;
+    }
+
+    #AddProduct {
+        height: 1050px;
+    }
+
+    #logout {
+        display: grid;
+        text-align: center;
+    }
+
+    #note {
+        width: 330px;
+    }
+
+    #productDetails {
+        width: 330px;
+    }
+
+    .bi-arrow-left {
+        display: none;
+    }
+
+    .bi-arrow-up {
+        display: inline;
+    }
+}
+
+/* Android Devices */
+@media only screen and (min-width:401px) and (max-width:600px) {
+    .row {
+        display: grid;
+    }
+
+    #enterProduct {
+        width: 360px;
+    }
+
+    #AddProduct {
+        height: 1050px;
+    }
+
+    #logout {
+        display: grid;
+        text-align: center;
+    }
+
+    #note {
+        width: 370px;
+    }
+
+    #productDetails {
+        width: 370px;
+    }
+
+    .bi-arrow-left {
+        display: none;
+    }
+
+    .bi-arrow-up {
+        display: inline;
+    }
+}
+
+/* Android Devices */
+@media only screen and (min-width:601px) and (max-width:767px) {
+    .row {
+        display: grid;
+    }
+
+    #enterProduct {
+        width: 380px;
+    }
+
+    #AddProduct {
+        height: 1050px;
+    }
+
+    #logout {
+        display: grid;
+        text-align: center;
+    }
+
+    #note {
+        width: 390px;
+    }
+
+    #productDetails {
+        width: 390px;
+    }
+
+    .bi-arrow-left {
+        display: none;
+    }
+
+    .bi-arrow-up {
+        display: inline;
+    }
+}
+
+/* Tablets */
+@media only screen and (min-width:768px) and (max-width:1030px) {
+    .row {
+        display: grid;
+    }
+
+    #enterProduct {
+        width: 400px;
+    }
+
+    #AddProduct {
+        height: 1050px;
+    }
+
+    #logout{
+        display: grid;
+        text-align: center;
+    }
+    #note{
+        width: 400px;
+    }
+    #productDetails{
+       width: 400px;
+    }
+    .bi-arrow-left{
+        display: none;
+    }
+    .bi-arrow-up{
+        display: inline;
+    }
+}
+
+@media only screen and (min-width:1031px) and (max-width:1150px) 
+{
+    #note{
+        width: 280px;
+    }
+   
+}
+
+/* Desktop mode Tablets */
+@media only screen and (min-width:1151px) and (max-width:1300px) 
+{
+    #note{
+        width: 320px;
+    }
+}

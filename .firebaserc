@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "fakestore-shopping": {
+      "hosting": {
+        "Angular-Shopping": [
+          "fakestore-shopping"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "fakestore-shopping"
+  }
+}

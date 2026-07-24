@@ -1,0 +1,9 @@
+{
+  "hosting": [
+    {
+      "target": "Angular-Shopping",
+      "source": ".",
+      "frameworksBackend": {}
+    }
+  ]
+}

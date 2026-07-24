@@ -1,0 +1,68 @@
+<div id="register">
+    <div class="d-flex justify-content-center mt-1">
+        <h2>Login to Add a Product <span class="bi bi-arrow-down mt-2"></span></h2>
+    </div>
+    <div class="row">
+        <div class="col-6">
+            <div class="border shadow rounded-3 p-3 m-2" id="login">
+                <form action="" method="post" #frmRegister="ngForm" (submit)="SubmitClick(frmRegister.value)">
+                    <h1><span class="bi bi-person-fill-add"></span> Login User</h1>
+                    <dl>
+                        <dt class="form-label">UserName</dt>
+                        <dd>
+                            <input type="text" name="username" ngModel #username="ngModel" required
+                                class="form-control">
+                        </dd>
+                        <dd class="text-danger" *ngIf="username.touched && username.invalid">
+                            <div>UserName Required</div>
+                        </dd>
+                        <dt class="form-label">Password</dt>
+                        <dd>
+                            <input type="password" name="password" ngModel #password="ngModel" required
+                                class="form-control">
+                        </dd>
+                        <dd class="text-danger" *ngIf="password.touched && password.invalid">
+                            <div>Password Required</div>
+                        </dd>
+                    </dl>
+                    <div class="d-grid" id="submit">
+                        <button class="btn btn-success" [disabled]="frmRegister.invalid">Register</button>
+                    </div>
+                </form>
+                <div class="text-danger mt-1" *ngIf="error">
+                    <h5><span class="bi bi-x-circle-fill"></span> {{error}} UnAuthorized</h5>
+                </div>
+                <div id="isSubmitted" class="mt-2" *ngIf="isSubmitted"><span class="spinner-grow"></span></div>
+            </div>
+        </div>
+        <div class="col-6">
+            <div class="border rounded shadow p-2 mb-3 mt-2" id="note">
+                <p><strong><i><span class="bi bi-info-circle-fill text-warning"></span> Note: You can use any of the
+                            users' username and password available in users API to get token.
+                            any other usernames return error.</i></strong></p>
+            </div>
+            <div id="users">
+                <div *ngIf="isFetching"><span>Loading... <span
+                            class="spinner-border spinner-border-sm text-warning"></span></span></div>
+                <div *ngIf="usersError">{{usersError}}</div>
+                <table class="table table-bordered table-striped table-hover p-2 shadow">
+                    <thead>
+                        <tr>
+                            <th>index</th>
+                            <th>UserName</th>
+                            <th>Password</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let users of Users let i=index">
+                            <th>{{i}}</th>
+                            <th>{{users.username}}</th>
+                            <th>{{users.password}}</th>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <!-- <h6>{{key.token}}</h6> -->
+</div>

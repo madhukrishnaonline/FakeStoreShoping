@@ -1,0 +1,113 @@
+<div class="d-grid" id="cart">
+    <button id="ShowCartItems" (click)="ShowCartItems()" class="btn btn-warning">
+        [<span id="countProducts">{{CartItems.length}}</span>] <span class="bi bi-cart-check"></span>
+        Cart Items
+    </button>
+    <!--  -->
+    <div class="mt-2 overflow-auto" *ngIf="CartItems.length!=0 && isCartVisible" style="height: 700px;">
+        <h4 class="text-center">Cart Items</h4>
+        <div *ngFor="let cartItem of CartItems; let i = index" class="card m-1 p-1" style="width: 350px;">
+            <div class="row">
+                <div class="col">
+                    <h5 class="text-center">Title</h5>
+                    <div class="card-header" style="height: 130px;">
+                        <h6>{{cartItem.title}}</h6>
+                        <div class="">
+                            <button value="min" [attr.data-id]="cartItem.id" (click)="Quantity($event)"
+                                class="bi bi-dash-circle btn btn-lg"></button>
+                            <input class="border" style="width: 19px;" disabled value="{{cartItem.quantity}}">
+                            <button value="max" [attr.data-id]="cartItem.id" (click)="Quantity($event)"
+                                class="bi bi-plus-circle btn btn-lg"></button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <h5 class="text-center">Preview</h5>
+                    <div class="card-body">
+                        <img [src]="cartItem.image" width="100%" height="100px">
+                    </div>
+                </div>
+            </div>
+            <span class="border border-bottom"></span>
+            <div class="row mt-2">
+                <div class="col">
+                    <h6 class="text-center text-capitalize">Price</h6>
+                </div>
+                <div class="col price">
+                    <h6><span class="bi bi-currency-dollar"></span> {{cartItem.price*cartItem.quantity}}</h6>
+                </div>
+                <div class="col">
+                    <button (click)="RemoveClick(i)" class="btn btn-lg" style="margin-top: -15px;">
+                        <span class="bi bi-trash-fill text-danger"></span>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <span class="border border-bottom"></span>
+        <div class="row mt-2">
+            <div class="col-3">
+                <h4 class="text-center text-capitalize text-danger">Total <span>({{CartItems.length}})</span></h4>
+            </div>
+            <div class="col-3">
+                <h4><span class="bi bi-currency-dollar"></span> {{calculateTotal | number:'1.2-2'}}</h4>
+            </div>
+            <div class="col-4" id="order">
+                <button class="btn btn-primary" (click)="PlaceOrder()" data-bs-toggle="modal"
+                    data-bs-target="#orderPlaced">Place Order</button>
+            </div>
+            <div class="col-2">
+                <!-- <span>Empty Cart </span> -->
+                <button (click)="RemoveAll()" class="btn btn-lg" style="margin-top: -10px;">
+                    <span class="bi bi-trash-fill text-danger"></span>
+                </button>
+            </div>
+        </div>
+    </div>
+    <!-- Order Service Dialog -->
+    <div class="modal fade" id="orderPlaced" tabindex="-1" aria-labelledby="orderModalLabel" data-bs-backdrop="static">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="orderModalLabel">Cart Items</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div *ngIf="purchaseSuccess" class="success-message">
+                        🎉 Purchase successful! Your order is being processed.
+                        <div *ngFor="let item of placedItems">
+                            <div class="card p-2 m-2">
+                                <div class="row">
+                                    <div class="col">
+                                        <h6>{{item.title}}</h6>
+                                        <div class="">
+                                            <span>Quantity </span>
+                                            <input class="border" style="width: 15px;" disabled
+                                                value="{{item.quantity}}">
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <img [src]="item.image" alt="img" height="100px" width="100px">
+                                    </div>
+                                    <div class="col">Total <span class="bi bi-currency-dollar"></span>
+                                        {{item.price*item.quantity}}</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row m-2">
+                            <div class="col text-success">
+                                Total <span class="bi bi-currency-dollar"></span>{{Total}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div *ngIf="CartItems.length==0 && isCartVisible">
+        <div class="ms-5 mt-5">
+            <h1>Cart Is Empty <span class="bi bi-emoji-frown-fill text-danger"></span> <span
+                    class="bi bi-cart-x text-danger"></span></h1>
+            <h2>How About Adding Some Items <span class="bi bi-emoji-laughing-fill text-primary"></span></h2>
+        </div>
+    </div>
+</div>
