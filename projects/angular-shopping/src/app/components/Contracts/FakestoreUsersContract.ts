@@ -1,5 +1,4 @@
-export interface FakestoreUsersContract 
-{
+export interface FakestoreUsersContract {
     id: number,
     email: string,
     username: string,

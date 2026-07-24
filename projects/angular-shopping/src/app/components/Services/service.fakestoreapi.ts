@@ -30,23 +30,24 @@ export class FakestoreServiceAPI {
         return this.http.get<FakestoreProductContract>(`${this.baseUrl}/${id}`);
     }
 
-    public addProduct(Product: any) {
-        return this.http.post(this.baseUrl, Product);
+
+    public addProduct(Product: Partial<FakestoreProductContract>): Observable<FakestoreProductContract> {
+        return this.http.post<FakestoreProductContract>(this.baseUrl, Product);
     }
 
-    public getAllUsers(): Observable<FakestoreUsersContract> {
-        return this.http.get<FakestoreUsersContract>('https://fakestoreapi.com/users');
+    public getAllUsers(): Observable<FakestoreUsersContract[]> {
+        return this.http.get<FakestoreUsersContract[]>('https://fakestoreapi.com/users');
     }
 
-    public loginUser(Users: any) {
-        return this.http.post(this.loginUrl, Users);
+    public loginUser(Users: { username: string; password: string }): Observable<any> {
+        return this.http.post<any>(this.loginUrl, Users);
     }
 
     public sortProducts(): Observable<FakestoreProductContract[]> {
         return this.http.get<FakestoreProductContract[]>(this.baseUrl + "?sort=desc");
     }
 
-    public limitProducts(size: number) {
-        return this.http.get(`${this.baseUrl}?limit=${size}`);
+    public limitProducts(size: number): Observable<FakestoreProductContract[]> {
+        return this.http.get<FakestoreProductContract[]>(`${this.baseUrl}?limit=${size}`);
     }
 }

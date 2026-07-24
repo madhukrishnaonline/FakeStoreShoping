@@ -5,7 +5,7 @@
     <div class="row">
         <div class="col-6">
             <div class="border shadow rounded-3 p-3 m-2" id="login">
-                <form action="" method="post" #frmRegister="ngForm" (submit)="SubmitClick(frmRegister.value)">
+                <form action="" method="post" #frmRegister="ngForm" (ngSubmit)="SubmitClick(frmRegister)">
                     <h1><span class="bi bi-person-fill-add"></span> Login User</h1>
                     <dl>
                         <dt class="form-label">UserName</dt>
