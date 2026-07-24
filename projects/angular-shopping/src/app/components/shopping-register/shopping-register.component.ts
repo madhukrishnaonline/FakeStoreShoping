@@ -36,9 +36,12 @@ export class ShoppingRegisterComponent implements OnInit {
   public error = null;
   public SubmitClick(form: NgForm) {
     this.isSubmitted = true;
-    this.users.loginUser(form.value).subscribe(token => {
-      this.key = token;
-      this.auth.login();
+    this.users.loginUser(form.value).subscribe(tokenResp => {
+      this.key = tokenResp;
+      const token = tokenResp && (tokenResp.token || tokenResp);
+      if (token) {
+        this.auth.login(token);
+      }
       this.isSubmitted = false;
       alert("Login Successfull...now you can add a Product");
       this.router.navigate(['add/product']);
