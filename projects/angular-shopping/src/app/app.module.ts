@@ -35,6 +35,7 @@ import { ShoppingModalCartComponent } from './components/shopping-modal-cart/sho
 import { ShoppingSearchResultsComponent } from './components/shopping-search-results/shopping-search-results.component';
 import { ShoppingFavProductsComponent } from './components/shopping-fav-products/shopping-fav-products.component';
 import { AuthInterceptor } from './components/Services/auth.interceptor';
+import { NotificationComponent } from './components/notification/notification.component';
 
 @NgModule({
   declarations: [
@@ -61,6 +62,7 @@ import { AuthInterceptor } from './components/Services/auth.interceptor';
     ShoppingModalCartComponent,
     ShoppingSearchResultsComponent,
     ShoppingFavProductsComponent,
+    NotificationComponent,
 
   ],
   imports: [

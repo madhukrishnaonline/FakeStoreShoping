@@ -1,0 +1,29 @@
+.notification-wrapper{
+  position: fixed;
+  bottom: 16px;
+  right: 16px;
+  z-index: 1200;
+}
+.notification{
+  min-width: 240px;
+  max-width: 380px;
+  padding: 12px 14px;
+  border-radius: 6px;
+  color: white;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+  display:flex;
+  align-items:center;
+}
+.notification .message{
+  flex:1;
+}
+.notification .close{
+  background: transparent;
+  border: none;
+  color: white;
+  font-size: 18px;
+  line-height:1;
+}
+.notification.success{ background: #28a745; }
+.notification.error{ background: #dc3545; }
+.notification.info{ background: #17a2b8; }
