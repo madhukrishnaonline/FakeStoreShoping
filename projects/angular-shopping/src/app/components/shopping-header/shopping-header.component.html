@@ -2,7 +2,8 @@
     <div class="container-fluid">
         <div class="navbar-brand">
             <h1 class="text-white position-relative">Fakestore Shopping <span class="bi bi-cart4"></span>
-                <span id="badge" class="badge text-bg-dark position-absolute top-0 start-100 translate-middle rounded-circle"
+                <span id="badge"
+                    class="badge text-bg-dark position-absolute top-0 start-100 translate-middle rounded-circle"
                     data-bs-toggle="modal" data-bs-target="#exampleModal">
                     <span data-bs-toggle="tooltip" data-bs-placement="bottom"
                         data-bs-title="Cart Items">{{CartItems.length}}</span>
@@ -16,12 +17,14 @@
             <form class="input-group example-form">
                 <input type="search" placeholder="Search for a product" [formControl]="SearchProduct"
                     [matAutocomplete]="auto" class="form-control example-input">
-                <button type="submit" class="btn btn-success input-group-text" [disabled]="SearchProduct.invalid" routerLink="search" (click)="Search()">
+                <button type="submit" class="btn btn-success input-group-text" [disabled]="SearchProduct.invalid"
+                    routerLink="search" (click)="Search()">
                     Search
                 </button>
                 <mat-autocomplete #auto="matAutocomplete">
-                    <mat-option *ngFor="let product of filteredProducts | async let i=index"  [value]="product" class="mt-2">
-                       {{i}}-- {{product | uppercase}}
+                    <mat-option *ngFor="let product of filteredProducts | async; let i = index; trackBy: trackByProduct"
+                        [value]="product" class="mt-2">
+                        {{i}}-- {{product | uppercase}}
                     </mat-option>
                 </mat-autocomplete>
             </form>
@@ -53,7 +56,8 @@
                         <a class="nav-link" routerLink="login/user">LOGIN</a>
                     </li>
                     <li class="nav-item" id="desc">
-                        <a class="nav-link" routerLink="sorting/products" [queryParams]="{sort:'desc'}">REVERSE ORDER</a>
+                        <a class="nav-link" routerLink="sorting/products" [queryParams]="{sort:'desc'}">REVERSE
+                            ORDER</a>
                     </li>
                     <li class="nav-item" id="limit">
                         <a class="nav-link" routerLink="limited">LIMIT PRODUCTS</a>
@@ -61,17 +65,21 @@
                 </ul>
                 <ul class="navbar-nav wishlist" id="SearchWish">
                     <h1 class="me-5 mt-2">
-                        <a class="nav-link" routerLink="WishList"><span class="bi bi-suit-heart position-relative"></span>
-                            <span style="margin-inline-start:10px;" class="badge text-bg-dark position-absolute rounded-circle translate-middle">{{WishListItems.length}}</span></a>
+                        <a class="nav-link" routerLink="WishList"><span
+                                class="bi bi-suit-heart position-relative"></span>
+                            <span style="margin-inline-start:10px;"
+                                class="badge text-bg-dark position-absolute rounded-circle translate-middle">{{WishListItems.length}}</span></a>
                     </h1>
                     <form class="input-group example-form" id="SearchForm">
                         <input type="search" placeholder="Search for a product" [formControl]="SearchProduct"
                             [matAutocomplete]="auto" class="form-control example-input">
-                        <button type="submit" class="btn btn-success" [disabled]="SearchProduct.invalid" routerLink="search" (click)="Search()">
+                        <button type="submit" class="btn btn-success" [disabled]="SearchProduct.invalid"
+                            routerLink="search" (click)="Search()">
                             Search
                         </button>
                         <mat-autocomplete #auto="matAutocomplete">
-                            <mat-option *ngFor="let product of filteredProducts | async" [value]="product" class="mt-2">
+                            <mat-option *ngFor="let product of filteredProducts | async; trackBy: trackByProduct"
+                                [value]="product" class="mt-2">
                                 {{product | uppercase}}
                             </mat-option>
                         </mat-autocomplete>

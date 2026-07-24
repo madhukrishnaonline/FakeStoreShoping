@@ -51,9 +51,15 @@ export class ShoppingDetailsComponent implements OnInit {
 
   public WishListItems: FakestoreProductContract[] = [];
   public AddToWishList(id: number) {
-    this.notifier.showSuccess('Product added to wishlist');
-    this.cartService.addToWishList(id);
+    const added = this.cartService.addToWishList(id);
+    if (added) this.notifier.showSuccess('Product added to wishlist');
+    else this.notifier.showSuccess('Product removed from wishlist');
   }//AddToWishList
+
+  public isInWishlist(id: number): boolean {
+    const list = this.cartService.getWishListItems();
+    return !!list.find(item => item.id === id);
+  }
 
   purchaseSuccess: boolean = false;
   public BuyNow() {

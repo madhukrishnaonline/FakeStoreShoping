@@ -21,6 +21,10 @@ export class ShoppingCartItemsComponent implements OnInit {
     this.CartItems = this.cartService.getCartItems();
   }
 
+  trackByProductId(index: number, product: FakestoreProductContract) {
+    return product && product.id ? product.id : index;
+  }
+
 
   // Remove Cart Item
   public RemoveClick(id: number) {

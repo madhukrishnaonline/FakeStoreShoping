@@ -39,8 +39,8 @@ export class FakestoreServiceAPI {
         return this.http.get<FakestoreUsersContract[]>('https://fakestoreapi.com/users');
     }
 
-    public loginUser(Users: { username: string; password: string }): Observable<any> {
-        return this.http.post<any>(this.loginUrl, Users);
+    public loginUser(Users: { username: string; password: string }): Observable<{ token: string }> {
+        return this.http.post<{ token: string }>(this.loginUrl, Users);
     }
 
     public sortProducts(): Observable<FakestoreProductContract[]> {
