@@ -1,11 +1,11 @@
-import { Injectable, OnInit } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { FakestoreServiceAPI } from './service.fakestoreapi';
 import { FakestoreProductContract } from '../Contracts/FakestoreProductContract';
 
 @Injectable({
   providedIn: 'root'
 })
-export class ShoppingCartServiceService implements OnInit {
+export class ShoppingCartServiceService {
   constructor(private service: FakestoreServiceAPI) { }
 
   public CartItems: FakestoreProductContract[] = [];
@@ -16,9 +16,7 @@ export class ShoppingCartServiceService implements OnInit {
   public ErrorText = null;
   public isFetching: boolean = false;
 
-  ngOnInit(): void {
-    // this.getTotal();
-  }
+
   getCartItems() {
     return this.CartItems;
   }

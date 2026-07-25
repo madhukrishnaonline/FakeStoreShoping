@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FakestoreServiceAPI } from '../Services/service.fakestoreapi';
-import { FakestoreUsersContract } from '../Contracts/FakestoreUsersContract';
 import { Router } from '@angular/router';
 import { AuthServiceComponent } from '../Services/service.auth';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-shopping-register',
@@ -14,7 +14,7 @@ export class ShoppingRegisterComponent implements OnInit {
   public key: any;
   public isFetching: boolean = true;
 
-  constructor(private users: FakestoreServiceAPI, private auth: AuthServiceComponent, private router:Router) { }
+  constructor(private users: FakestoreServiceAPI, private auth: AuthServiceComponent, private router: Router) { }
 
   ngOnInit(): void {
     this.fetchUsers();
@@ -28,28 +28,30 @@ export class ShoppingRegisterComponent implements OnInit {
       this.isFetching = false;
     }, (error) => {
       this.usersError = error.message
-       this.isFetching=false;
+      this.isFetching = false;
     });
   }
 
   public isSubmitted: boolean = false;
   public error = null;
-  public SubmitClick(data: any) {
-    // alert(JSON.stringify(data));
+  public SubmitClick(form: NgForm) {
     this.isSubmitted = true;
-    this.users.loginUser(data).subscribe(token => {
-      this.key = token;
-        this.auth.login();
-        this.isSubmitted = false;
-        alert("Login Successfull...now you can add a Product");
-        this.router.navigate(['add/product']);
-      data.reset();
+    this.users.loginUser(form.value).subscribe(tokenResp => {
+      this.key = tokenResp;
+      const token = tokenResp && (tokenResp.token || tokenResp);
+      if (token) {
+        this.auth.login(token);
+      }
+      this.isSubmitted = false;
+      alert("Login Successfull...now you can add a Product");
+      this.router.navigate(['add/product']);
+      form.reset();
     }, (error) => {
-      this.error = error.status
+      this.error = error.status;
       this.isSubmitted = false;
       alert(this.error + " UnAuthorized...");
-    });//loginUser
-       
+    });
+
   }//SubmitClick()
 
 }

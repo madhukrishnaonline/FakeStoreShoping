@@ -1,11 +1,12 @@
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
-import { MatAutocompleteModule} from '@angular/material/autocomplete';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
 
 
 import { AppRoutingModule } from './app-routing.module';
@@ -33,6 +34,7 @@ import { ShoppingLimitedProductsComponent } from './components/shopping-limited-
 import { ShoppingModalCartComponent } from './components/shopping-modal-cart/shopping-modal-cart.component';
 import { ShoppingSearchResultsComponent } from './components/shopping-search-results/shopping-search-results.component';
 import { ShoppingFavProductsComponent } from './components/shopping-fav-products/shopping-fav-products.component';
+import { AuthInterceptor } from './components/Services/auth.interceptor';
 
 @NgModule({
   declarations: [
@@ -59,7 +61,7 @@ import { ShoppingFavProductsComponent } from './components/shopping-fav-products
     ShoppingModalCartComponent,
     ShoppingSearchResultsComponent,
     ShoppingFavProductsComponent,
-      
+
   ],
   imports: [
     FormsModule,
@@ -71,12 +73,14 @@ import { ShoppingFavProductsComponent } from './components/shopping-fav-products
     MatButtonModule,
     MatIconModule,
     MatAutocompleteModule,
-    
+
   ],
   schemas: [
-    CUSTOM_ELEMENTS_SCHEMA 
- ],
-  providers: [],
+    CUSTOM_ELEMENTS_SCHEMA
+  ],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }
+  ],
   bootstrap: [ShoppingIndexComponent]
 })
 export class AppModule { }
