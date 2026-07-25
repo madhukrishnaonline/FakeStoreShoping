@@ -1,0 +1,6 @@
+<div class="notification-wrapper" *ngIf="notification">
+  <div class="notification" [ngClass]="notification.type">
+    <div class="message">{{notification.message}}</div>
+    <button class="close" aria-label="Dismiss" (click)="dismiss()">×</button>
+  </div>
+</div>
