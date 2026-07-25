@@ -3,7 +3,7 @@ import { FakestoreServiceAPI } from './../Services/service.fakestoreapi';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { FakestoreProductContract } from '../Contracts/FakestoreProductContract';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { NotificationService } from '../Services/notification.service';
 
 @Component({
@@ -15,7 +15,7 @@ export class ShoppingFavProductsComponent implements OnInit {
   public Products: FakestoreProductContract[] = [];
   private wishSub?: Subscription;
 
-  constructor(private products: FakestoreServiceAPI, private route: ActivatedRoute, private cartService: ShoppingCartServiceService, private notifier: NotificationService) { }
+  constructor(private products: FakestoreServiceAPI, private route: ActivatedRoute, private cartService: ShoppingCartServiceService, private notifier: NotificationService, private router: Router) { }
 
   public ErrorText = null;
   public isFetching: boolean = false;
@@ -56,7 +56,7 @@ export class ShoppingFavProductsComponent implements OnInit {
   public onCardKeydown(event: KeyboardEvent, product: FakestoreProductContract) {
     const key = event.key;
     if (key === 'Enter') {
-      this.AddToCart(product.id);
+      this.router.navigate(['/details', product.id, product.title]);
       event.preventDefault();
     } else if (key.toLowerCase() === 'w' || key.toLowerCase() === 'r') {
       this.UnList(product.id);

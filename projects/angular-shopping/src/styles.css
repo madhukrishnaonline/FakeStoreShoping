@@ -35,5 +35,55 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 .product-card:hover .quick-actions, .product-card:focus .quick-actions { opacity: 1; }
 .quick-btn { background: rgba(255,255,255,.9); border: 1px solid rgba(0,0,0,.1); }
 
+/* Responsive product image inside card */
+.product-card-img { width: 100%; height: 220px; object-fit: contain; display: block; }
+@media (max-width: 576px) {
+	.product-card-img { height: 180px; }
+}
+
+/* Carousel image sizing */
+.carousel-img { width: 100%; height: 230px; object-fit: cover; display: block; }
+@media (max-width: 576px) {
+	.carousel-img { height: 140px; }
+}
+
+/* Show pointer when hovering a clickable product card */
+.product-card:hover { cursor: pointer; }
+.product-card:focus { cursor: pointer; }
+
+/* Card hover tooltip shown via data-tooltip attribute */
+.product-card[data-tooltip] {
+	position: relative;
+}
+.product-card[data-tooltip]:hover::after,
+.product-card[data-tooltip]:focus::after {
+	content: attr(data-tooltip);
+	position: absolute;
+	left: 50%;
+	transform: translateX(-50%);
+	bottom: 100%;
+	margin-bottom: 8px;
+	background: rgba(0,0,0,0.75);
+	color: #fff;
+	padding: 6px 10px;
+	border-radius: 4px;
+	font-size: 12px;
+	white-space: nowrap;
+	z-index: 50;
+	opacity: 1;
+}
+.product-card[data-tooltip]:hover::before,
+.product-card[data-tooltip]:focus::before {
+	content: '';
+	position: absolute;
+	left: 50%;
+	transform: translateX(-50%);
+	bottom: calc(100% - 2px);
+	border-width: 6px 6px 0 6px;
+	border-style: solid;
+	border-color: rgba(0,0,0,0.75) transparent transparent transparent;
+	z-index: 50;
+}
+
 /* Accessible focus styles for interactive elements */
 button:focus { box-shadow: 0 0 0 3px rgba(13,110,253,.25); }
