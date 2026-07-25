@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FakestoreProductContract } from '../Contracts/FakestoreProductContract';
 import { ShoppingCartServiceService } from '../Services/shopping-cart-service.service';
+import { NotificationService } from '../Services/notification.service';
 
 @Component({
   selector: 'app-shopping-search-results',
@@ -9,16 +10,15 @@ import { ShoppingCartServiceService } from '../Services/shopping-cart-service.se
 })
 export class ShoppingSearchResultsComponent implements OnInit {
 
-  constructor(private cartService: ShoppingCartServiceService) { }
+  constructor(private cartService: ShoppingCartServiceService, private notifier: NotificationService) { }
 
   public product: FakestoreProductContract[] | null = [];
-  public TotalPrice:number = 0;
+  public TotalPrice: number = 0;
 
-  notFound:string = '';
-  ngOnInit(): void
-  {
+  notFound: string = '';
+  ngOnInit(): void {
     this.product = this.cartService.getSearchedProduct();
-    this.product.filter(item=>item.id==0).forEach(()=>this.notFound = "Not Found....");
+    this.product.filter(item => item.id == 0).forEach(() => this.notFound = "Not Found....");
     // console.log(this.product.map(data => data.title));
   }
 
@@ -27,7 +27,7 @@ export class ShoppingSearchResultsComponent implements OnInit {
   }
   // Add To Cart
   public AddToCart(id: number) {
-    alert(id+" Product Added to Cart");
+    this.notifier.showSuccess('Product added to cart');
     this.cartService.addToCart(id);
   }
 

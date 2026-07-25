@@ -3,6 +3,7 @@ import { FakestoreServiceAPI } from '../Services/service.fakestoreapi';
 import { FakestoreProductContract } from '../Contracts/FakestoreProductContract';
 import { FormBuilder, Validators } from '@angular/forms';
 import { AuthServiceComponent } from '../Services/service.auth';
+import { NotificationService } from '../Services/notification.service';
 import { Router } from '@angular/router';
 import { ShoppingCartServiceService } from '../Services/shopping-cart-service.service';
 
@@ -13,7 +14,7 @@ import { ShoppingCartServiceService } from '../Services/shopping-cart-service.se
 })
 export class ShoppingAddProductComponent implements OnInit {
   constructor(private fakestore: FakestoreServiceAPI, private fb: FormBuilder, private auth: AuthServiceComponent, private router: Router,
-    private cartService: ShoppingCartServiceService) { }
+    private cartService: ShoppingCartServiceService, private notifier: NotificationService) { }
 
   ngOnInit(): void {
 
@@ -49,7 +50,7 @@ export class ShoppingAddProductComponent implements OnInit {
   public isFetching: boolean = false;
   public SubmitClick() {
     this.isFetching = true;
-    // alert(JSON.stringify(this.frmRegister.value)+" Product Added");
+    
     const fv = this.frmRegister.value;
     const payload: Partial<FakestoreProductContract> = {
       title: fv.title ?? '',
@@ -73,6 +74,7 @@ export class ShoppingAddProductComponent implements OnInit {
 
   public Logout() {
     this.auth.logout();
+    this.notifier.showSuccess('Logged out');
     this.router.navigate(['login/user']);
   }
 }

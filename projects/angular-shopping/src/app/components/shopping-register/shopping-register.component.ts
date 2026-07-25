@@ -3,6 +3,7 @@ import { FakestoreServiceAPI } from '../Services/service.fakestoreapi';
 import { Router } from '@angular/router';
 import { AuthServiceComponent } from '../Services/service.auth';
 import { NgForm } from '@angular/forms';
+import { NotificationService } from '../Services/notification.service';
 
 @Component({
   selector: 'app-shopping-register',
@@ -14,7 +15,7 @@ export class ShoppingRegisterComponent implements OnInit {
   public key: any;
   public isFetching: boolean = true;
 
-  constructor(private users: FakestoreServiceAPI, private auth: AuthServiceComponent, private router: Router) { }
+  constructor(private users: FakestoreServiceAPI, private auth: AuthServiceComponent, private router: Router, private notifier: NotificationService) { }
 
   ngOnInit(): void {
     this.fetchUsers();
@@ -43,13 +44,13 @@ export class ShoppingRegisterComponent implements OnInit {
         this.auth.login(token);
       }
       this.isSubmitted = false;
-      alert("Login Successfull...now you can add a Product");
+      this.notifier.showSuccess('Login successful — you can add a product');
       this.router.navigate(['add/product']);
       form.reset();
     }, (error) => {
       this.error = error.status;
       this.isSubmitted = false;
-      alert(this.error + " UnAuthorized...");
+      this.notifier.showError(this.error + " UnAuthorized...");
     });
 
   }//SubmitClick()
