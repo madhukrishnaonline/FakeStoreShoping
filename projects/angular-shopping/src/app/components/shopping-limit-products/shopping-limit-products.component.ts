@@ -20,6 +20,7 @@ export class ShoppingLimitProductsComponent implements OnInit {
     // this.GetProduct();
   }
   public Product: any
+  public limitedProducts: FakestoreProductContract[] = [];
 
   public ErrorText = null;
   public isFetching: boolean = false;
@@ -28,6 +29,7 @@ export class ShoppingLimitProductsComponent implements OnInit {
     this.isFetching = true;
     this.product.limitProducts(e.target.value).subscribe(data => {
       this.Product = data;
+      this.limitedProducts = data;
       this.isFetching = false;
     }, (error) => {
       this.ErrorText = error.statusText;

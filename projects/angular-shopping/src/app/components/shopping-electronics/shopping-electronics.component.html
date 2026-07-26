@@ -3,7 +3,7 @@
     <div class="error" *ngIf="ErrorText">{{ErrorText}}</div>
     <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-3 m-2">
         <div *ngFor="let products of electronics; trackBy: trackByProductId" class="col">
-            <div class="card h-100 product-card" tabindex="0" (keydown)="onCardKeydown($event, products)"
+            <div class="card h-100 product-card" [class.wishlisted]="isInWishlist(products.id)" tabindex="0" (keydown)="onCardKeydown($event, products)"
                 [routerLink]="['/details', products.id, products.title]" data-tooltip="Click to see more">
                 <div class="card-body d-flex flex-column">
                     <div class="quick-actions">

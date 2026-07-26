@@ -1,8 +1,8 @@
-<div class="products d-flex flex-wrap overflow-auto">
+<div class="products overflow-auto">
     <div *ngIf="Products.length!=0">
         <div *ngIf="isFetching">Loading... <span class="spinner-border"></span></div>
         <div *ngIf="ErrorText">{{ErrorText}}</div>
-        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-3">
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-3 m-2">
             <div *ngFor="let products of Products; trackBy: trackByProductId" class="col">
                 <div class="card h-100 product-card" tabindex="0" (keydown)="onCardKeydown($event, products)"
                     [routerLink]="['/details', products.id, products.title]" data-tooltip="Click to see more">

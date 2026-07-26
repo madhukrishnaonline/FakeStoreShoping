@@ -35,6 +35,9 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 .product-card:hover .quick-actions, .product-card:focus .quick-actions { opacity: 1; }
 .quick-btn { background: rgba(255,255,255,.9); border: 1px solid rgba(0,0,0,.1); }
 
+/* Show quick actions for products that are wishlisted without hover */
+.product-card.wishlisted .quick-actions { opacity: 1; }
+
 /* Responsive product image inside card */
 .product-card-img { width: 100%; height: 220px; object-fit: contain; display: block; }
 @media (max-width: 576px) {

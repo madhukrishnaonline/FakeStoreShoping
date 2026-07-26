@@ -14,12 +14,14 @@ export class ShoppingSearchResultsComponent implements OnInit {
   constructor(private cartService: ShoppingCartServiceService, private notifier: NotificationService, private router: Router) { }
 
   public product: FakestoreProductContract[] | null = [];
+  public SearchResults: FakestoreProductContract[] | null = [];
   public TotalPrice: number = 0;
 
   notFound: string = '';
   ngOnInit(): void {
     this.product = this.cartService.getSearchedProduct();
-    this.product.filter(item => item.id == 0).forEach(() => this.notFound = "Not Found....");
+    this.SearchResults = this.product;
+    this.SearchResults?.filter(item => item.id == 0).forEach(() => this.notFound = "Not Found....");
     // console.log(this.product.map(data => data.title));
   }
 
