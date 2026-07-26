@@ -18,6 +18,10 @@ export class ShoppingModalCartComponent implements OnInit {
     this.CartItems = this.cartService.getCartItems();
   }
 
+  trackByProductId(index: number, product: FakestoreProductContract) {
+    return product && product.id ? product.id : index;
+  }
+
   get calculateTotal() {
     return this.CartItems.reduce<number>((prev, product) => prev + (product.price * product.quantity), 0);
   }

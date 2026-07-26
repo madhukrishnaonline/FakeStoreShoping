@@ -1,14 +1,21 @@
 <div class="products d-flex flex-wrap overflow-auto">
     <div class="fetching" *ngIf="isFetching">Loading... <span class="spinner-border"></span></div>
     <div class="error" *ngIf="ErrorText">{{ErrorText}}</div>
-    <div *ngFor="let products of electronics" class="card m-2 p-2">
+    <div *ngFor="let products of electronics; trackBy: trackByProductId" class="card m-2 p-2 product-card" tabindex="0" (keydown)="onCardKeydown($event, products)">
         <div class="card-body">
-            <div id="wishlist">
-                <button class="btn btn-link" (click)="AddToWishList(products.id)">
-                    <span class="bi bi-heart"></span>
-                </button>
+            <div class="quick-actions">
+                <button class="btn btn-sm quick-btn" (click)="AddToCart(products.id)" aria-label="Add to cart"><span class="bi bi-cart"></span></button>
+                <button class="btn btn-sm quick-btn" (click)="AddToWishList(products.id)" aria-label="Toggle wishlist"><span [class]="isInWishlist(products.id) ? 'bi bi-heart-fill text-danger' : 'bi bi-heart'"></span></button>
             </div>
-            <img [src]="products.image" width="100%" height="250px" [alt]="products.title">
+            <ng-container *ngIf="products.title; else skeleton">
+                <img [src]="products.image" width="100%" height="250px" [alt]="products.title">
+            </ng-container>
+            <ng-template #skeleton>
+                <div class="skeleton">
+                    <div class="skeleton-img"></div>
+                    <div class="skeleton-line" style="width:70%"></div>
+                </div>
+            </ng-template>
         </div>
         <div class="card-footer">
             <h4>{{products.title | slice:0:35}}</h4>

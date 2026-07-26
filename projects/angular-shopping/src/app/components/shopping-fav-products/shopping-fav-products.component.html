@@ -2,14 +2,21 @@
     <div *ngIf="Products.length!=0">
         <div *ngIf="isFetching">Loading... <span class="spinner-border"></span></div>
         <div *ngIf="ErrorText">{{ErrorText}}</div>
-        <div *ngFor="let products of Products" class="card m-2 p-2">
+        <div *ngFor="let products of Products; trackBy: trackByProductId" class="card m-2 p-2 product-card" tabindex="0" (keydown)="onCardKeydown($event, products)">
+            <div class="quick-actions">
+                <button class="btn btn-sm quick-btn" (click)="AddToCart(products.id)" aria-label="Add to cart"><span class="bi bi-cart"></span></button>
+                <button class="btn btn-sm quick-btn" (click)="UnList(products.id)" aria-label="Remove from wishlist"><span class="bi bi-heart-fill text-danger"></span></button>
+            </div>
             <div class="card-body">
-                <div id="wishlist">
-                    <button class="btn btn-link" (click)="UnList(products.id)">
-                        <span class="bi bi-heart-fill text-danger"></span>
-                    </button>
-                </div>
-                <img [src]="products.image" width="100%" height="250px" [alt]="products.title">
+                <ng-container *ngIf="products.title; else skeleton">
+                    <img [src]="products.image" width="100%" height="250px" [alt]="products.title">
+                </ng-container>
+                <ng-template #skeleton>
+                    <div class="skeleton">
+                        <div class="skeleton-img"></div>
+                        <div class="skeleton-line" style="width:70%"></div>
+                    </div>
+                </ng-template>
             </div>
             <div class="card-footer">
                 <h4>{{products.title | slice:0:35}}</h4>

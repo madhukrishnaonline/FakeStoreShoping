@@ -1,10 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { ShoppingProductsComponent } from './components/shopping-products/shopping-products.component';
-import { ShoppingElectronicsComponent } from './components/shopping-electronics/shopping-electronics.component';
-import { ShoppingJeweleryComponent } from './components/shopping-jewelery/shopping-jewelery.component';
-import { ShoppingMensClothingComponent } from './components/shopping-mens-clothing/shopping-mens-clothing.component';
-import { ShoppingWomensClothingComponent } from './components/shopping-womens-clothing/shopping-womens-clothing.component';
 import { NotfoundComponent } from './components/notfound/notfound.component';
 import { ShoppingDetailsComponent } from './components/shopping-details/shopping-details.component';
 import { ShoppingAddProductComponent } from './components/shopping-add-product/shopping-add-product.component';
@@ -18,10 +14,10 @@ import { ShoppingFavProductsComponent } from './components/shopping-fav-products
 
 const routes: Routes = [
   { path: "products", component: ShoppingProductsComponent },
-  { path: "electronics", component: ShoppingElectronicsComponent },
-  { path: "jewelery", component: ShoppingJeweleryComponent },
-  { path: "mens", component: ShoppingMensClothingComponent },
-  { path: "womens", component: ShoppingWomensClothingComponent },
+  { path: "electronics", loadChildren: () => import('./components/categories/electronics/electronics.module').then(m => m.ElectronicsModule) },
+  { path: "jewelery", loadChildren: () => import('./components/categories/jewelery/jewelery.module').then(m => m.JeweleryModule) },
+  { path: "mens", loadChildren: () => import('./components/categories/mens/mens.module').then(m => m.MensModule) },
+  { path: "womens", loadChildren: () => import('./components/categories/womens/womens.module').then(m => m.WomensModule) },
   { path: "details/:id/:title", component: ShoppingDetailsComponent },
   { path: "sorting/products", component: ShoppingSortDescComponent },
   {

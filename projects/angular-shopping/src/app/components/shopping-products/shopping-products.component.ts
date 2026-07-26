@@ -47,7 +47,6 @@ export class ShoppingProductsComponent implements OnInit {
       // build indicators for carousel (one intro slide + reverseOrder items)
       this.indicators = Array(this.ReverseOrder.length + 1).fill(0).map((_, i) => i);
     });
-    this.route.snapshot.paramMap.get("id");
   }
 
   public AddToCart(id: number) {
@@ -58,9 +57,26 @@ export class ShoppingProductsComponent implements OnInit {
   className: string = " ";
   public WishListItems: FakestoreProductContract[] = [];
   public AddToWishList(id: number) {
-    this.notifier.showSuccess("Product added to wishlist");
-    this.cartService.addToWishList(id);
+    const added = this.cartService.addToWishList(id);
+    if (added) this.notifier.showSuccess('Product added to wishlist');
+    else this.notifier.showSuccess('Product removed from wishlist');
   }//AddToWishList
+
+  public isInWishlist(id: number): boolean {
+    const list = this.cartService.getWishListItems();
+    return !!list.find(item => item.id === id);
+  }
+
+  public onCardKeydown(event: KeyboardEvent, product: FakestoreProductContract) {
+    const key = event.key;
+    if (key === 'Enter') {
+      this.AddToCart(product.id);
+      event.preventDefault();
+    } else if (key.toLowerCase() === 'w') {
+      this.AddToWishList(product.id);
+      event.preventDefault();
+    }
+  }
 
   slideFade: boolean = false;
   stopSlideFade() {

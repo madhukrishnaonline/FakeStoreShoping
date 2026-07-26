@@ -1,6 +1,7 @@
 import { ShoppingCartServiceService } from './../Services/shopping-cart-service.service';
 import { FakestoreServiceAPI } from './../Services/service.fakestoreapi';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Subscription } from 'rxjs';
 import { FakestoreProductContract } from '../Contracts/FakestoreProductContract';
 import { ActivatedRoute } from '@angular/router';
 import { NotificationService } from '../Services/notification.service';
@@ -12,6 +13,7 @@ import { NotificationService } from '../Services/notification.service';
 })
 export class ShoppingFavProductsComponent implements OnInit {
   public Products: FakestoreProductContract[] = [];
+  private wishSub?: Subscription;
 
   constructor(private products: FakestoreServiceAPI, private route: ActivatedRoute, private cartService: ShoppingCartServiceService, private notifier: NotificationService) { }
 
@@ -24,8 +26,19 @@ export class ShoppingFavProductsComponent implements OnInit {
     this.isFetching = false;
   }
   ngOnInit(): void {
-    this.getWishListProducts();
-    this.route.snapshot.paramMap.get("id");
+    this.isFetching = true;
+    this.wishSub = this.cartService.getWishListObservable().subscribe(list => {
+      this.Products = list;
+      this.isFetching = false;
+    });
+  }
+
+  ngOnDestroy(): void {
+    this.wishSub?.unsubscribe();
+  }
+
+  trackByProductId(index: number, product: FakestoreProductContract) {
+    return product && product.id ? product.id : index;
   }
 
   public AddToCart(id: number) {
@@ -34,7 +47,21 @@ export class ShoppingFavProductsComponent implements OnInit {
   }//AddToCart
 
   public UnList(id: number) {
-    this.Products.pop();
+    const removed = this.cartService.addToWishList(id); // toggles off
+    if (!removed) {
+      this.notifier.showSuccess('Removed from wishlist');
+    }
+  }
+
+  public onCardKeydown(event: KeyboardEvent, product: FakestoreProductContract) {
+    const key = event.key;
+    if (key === 'Enter') {
+      this.AddToCart(product.id);
+      event.preventDefault();
+    } else if (key.toLowerCase() === 'w' || key.toLowerCase() === 'r') {
+      this.UnList(product.id);
+      event.preventDefault();
+    }
   }
 
 }

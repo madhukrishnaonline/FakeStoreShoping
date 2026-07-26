@@ -33,6 +33,15 @@ export class ShoppingMensClothingComponent implements OnInit {
     this.getProduct();
   }
 
+  trackByProductId(index: number, product: FakestoreProductContract) {
+    return product && product.id ? product.id : index;
+  }
+
+  public isInWishlist(id: number): boolean {
+    const list = this.cartService.getWishListItems();
+    return !!list.find(item => item.id === id);
+  }
+
   public CartItems: FakestoreProductContract[] = [];
   public Total: number = 0;
   public AddToCart(id: number) {
@@ -43,7 +52,19 @@ export class ShoppingMensClothingComponent implements OnInit {
 
   public WishListItems: FakestoreProductContract[] = [];
   public AddToWishList(id: number) {
-    this.notifier.showSuccess('Product added to wishlist');
-    this.cartService.addToWishList(id);
+    const added = this.cartService.addToWishList(id);
+    if (added) this.notifier.showSuccess('Product added to wishlist');
+    else this.notifier.showSuccess('Product removed from wishlist');
   }//AddToWishList
+
+  public onCardKeydown(event: KeyboardEvent, product: FakestoreProductContract) {
+    const key = event.key;
+    if (key === 'Enter') {
+      this.AddToCart(product.id);
+      event.preventDefault();
+    } else if (key.toLowerCase() === 'w') {
+      this.AddToWishList(product.id);
+      event.preventDefault();
+    }
+  }
 }

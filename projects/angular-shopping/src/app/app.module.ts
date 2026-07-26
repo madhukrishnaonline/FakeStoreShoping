@@ -19,10 +19,6 @@ import { ShoppingFiltersComponent } from './components/shopping-filters/shopping
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ShoppingProductsComponent } from './components/shopping-products/shopping-products.component';
 import { ShoppingCartItemsComponent } from './components/shopping-cart-items/shopping-cart-items.component';
-import { ShoppingJeweleryComponent } from './components/shopping-jewelery/shopping-jewelery.component';
-import { ShoppingMensClothingComponent } from './components/shopping-mens-clothing/shopping-mens-clothing.component';
-import { ShoppingElectronicsComponent } from './components/shopping-electronics/shopping-electronics.component';
-import { ShoppingWomensClothingComponent } from './components/shopping-womens-clothing/shopping-womens-clothing.component';
 import { NotfoundComponent } from './components/notfound/notfound.component';
 import { ShoppingAllProductsComponent } from './components/shopping-all-products/shopping-all-products.component';
 import { ShoppingDetailsComponent } from './components/shopping-details/shopping-details.component';
@@ -47,10 +43,6 @@ import { NotificationComponent } from './components/notification/notification.co
     ShoppingFiltersComponent,
     ShoppingProductsComponent,
     ShoppingCartItemsComponent,
-    ShoppingJeweleryComponent,
-    ShoppingMensClothingComponent,
-    ShoppingElectronicsComponent,
-    ShoppingWomensClothingComponent,
     NotfoundComponent,
     ShoppingAllProductsComponent,
     ShoppingDetailsComponent,

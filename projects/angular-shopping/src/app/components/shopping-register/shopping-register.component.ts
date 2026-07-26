@@ -21,6 +21,10 @@ export class ShoppingRegisterComponent implements OnInit {
     this.fetchUsers();
   }
 
+  trackByUsers(index: number, user: any) {
+    return user && user.id ? user.id : index;
+  }
+
   public usersError = null;
   public fetchUsers() {
     this.isFetching = true;
@@ -39,7 +43,7 @@ export class ShoppingRegisterComponent implements OnInit {
     this.isSubmitted = true;
     this.users.loginUser(form.value).subscribe(tokenResp => {
       this.key = tokenResp;
-      const token = tokenResp && (tokenResp.token || tokenResp);
+      const token: string | undefined = (typeof tokenResp === 'string') ? tokenResp : (tokenResp && (tokenResp as any).token);
       if (token) {
         this.auth.login(token);
       }

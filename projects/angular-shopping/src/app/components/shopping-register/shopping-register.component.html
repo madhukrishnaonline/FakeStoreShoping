@@ -54,7 +54,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr *ngFor="let users of Users let i=index">
+                        <tr *ngFor="let users of Users; trackBy: trackByUsers; let i = index">
                             <th>{{i}}</th>
                             <th>{{users.username}}</th>
                             <th>{{users.password}}</th>

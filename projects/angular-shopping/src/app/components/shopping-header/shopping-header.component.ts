@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Subscription } from 'rxjs';
 import { ShoppingCartServiceService } from '../Services/shopping-cart-service.service';
 import { FakestoreProductContract } from '../Contracts/FakestoreProductContract';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
@@ -14,16 +15,15 @@ import { startWith, map } from 'rxjs/operators';
 })
 export class ShoppingHeaderComponent implements OnInit {
 
+  private wishSub?: Subscription;
+
   constructor(private cartService: ShoppingCartServiceService, private builder: FormBuilder, private fakestore: FakestoreServiceAPI) { }
 
   CartItems: FakestoreProductContract[] = [];
 
   SearchProduct = new FormControl('', Validators.required);
 
-  WishListItems:FakestoreProductContract[] = [];
-  getWishListLength(){
-    this.WishListItems = this.cartService.getWishListItems();
-  }
+  WishListItems: FakestoreProductContract[] = [];
 
   products: string[] = [
     "Fjallraven - Foldsack No. 1 Backpack, Fits 15 Laptops",
@@ -53,12 +53,22 @@ export class ShoppingHeaderComponent implements OnInit {
   ngOnInit(): void {
     this.CartItems = this.cartService.getCartItems();
 
-    this.getWishListLength();
+    this.wishSub = this.cartService.getWishListObservable().subscribe(list => {
+      this.WishListItems = list;
+    });
 
     this.filteredProducts = this.SearchProduct.valueChanges.pipe(
       startWith(''),
       map(value => this._filter(value || '')),
     );
+  }
+
+  ngOnDestroy(): void {
+    this.wishSub?.unsubscribe();
+  }
+
+  trackByProduct(index: number, product: string) {
+    return product;
   }
 
 
@@ -142,7 +152,7 @@ export class ShoppingHeaderComponent implements OnInit {
       this.cartService.AddToSearchResults(this.id);
     }//if
     else {
-      
+
     }//else
   }//addtoSearchProducts
 }
