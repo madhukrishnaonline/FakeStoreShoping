@@ -1,0 +1,51 @@
+#carousel-c { cursor: pointer; }
+
+.carousel-inner,
+.carousel-item {
+    width: 100%;
+    max-height: 230px;
+}
+
+.carousel-item .card {
+    height: auto;
+    border: none;
+}
+
+.carousel-img {
+    width: 100%; /* keep existing width */
+    height: auto;
+    max-height: 230px; /* cap height to avoid overflow */
+    object-fit: contain; /* show whole image without cropping */
+    display: block;
+}
+
+.carousel-caption {
+    bottom: 48px; /* lift captions above indicators */
+    left: 1rem;
+    right: 1rem;
+    text-align: left;
+    background: rgba(0,0,0,0.10); /* semi-transparent background for readability */
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+    z-index: 6;
+}
+
+/* Position indicators at the very bottom and ensure they are visible above images */
+.carousel-indicators {
+    bottom: 8px;
+    z-index: 7;
+}
+
+/* Remove blue focus ring on mouse-click for carousel controls/indicators, keep keyboard focus visible */
+.carousel-indicators button:focus:not(:focus-visible),
+.carousel-control-prev:focus:not(:focus-visible),
+.carousel-control-next:focus:not(:focus-visible),
+.carousel-item .card:focus:not(:focus-visible) {
+    outline: none;
+    box-shadow: none;
+}
+
+/* Optional: ensure indicators don't show default border */
+.carousel-indicators button {
+    border: none;
+}

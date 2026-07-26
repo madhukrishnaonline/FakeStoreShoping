@@ -1,21 +1,17 @@
-.card{
+.card {
     max-width: 400px;
 }
-.card:hover{
+
+.card:hover {
     box-shadow: 2px 5px 5px gray;
 }
-a
-{
+
+a {
     text-decoration: none;
 }
-.more
-{
-    margin-left: 280px;
-}
-#wishlist {
-    margin-left: 90%;
-}
-.fetching,.error{
+
+.fetching,
+.error {
     font-size: 30px;
     margin-left: 230px;
     margin-top: 180px;
@@ -28,9 +24,6 @@ a
         max-width: 300px;
     }
 
-    .more {
-        margin-left: 150px;
-    }
     .fetching,
     .error {
         font-size: 20px;
@@ -45,9 +38,6 @@ a
         max-width: 400px;
     }
 
-    .more {
-        margin-left: 200px;
-    }
     .fetching,
     .error {
         font-size: 20px;
@@ -58,15 +48,12 @@ a
 
 /*  Android Devices */
 @media only screen and (min-width:500px) and (max-width:767px) {
-    #limit{
+    #limit {
         width: 400px;
     }
+
     .card {
         max-width: 400px;
-    }
-
-    .more {
-        margin-left: 200px;
     }
 
     .fetching,
@@ -80,6 +67,7 @@ a
 
 
 @media only screen and (min-width:768px) and (max-width:900px) {
+
     .fetching,
     .error {
         font-size: 20px;

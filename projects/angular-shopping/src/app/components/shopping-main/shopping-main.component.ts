@@ -5,7 +5,6 @@ import { Component } from '@angular/core';
   templateUrl: './shopping-main.component.html',
   styleUrls: ['./shopping-main.component.css']
 })
-export class ShoppingMainComponent 
-{
-  
+export class ShoppingMainComponent {
+
 }

@@ -14,7 +14,7 @@
     <div class="products overflow-auto">
         <div class="fetching" *ngIf="isFetching">Loading... <span class="spinner-border"></span></div>
         <div class="error" *ngIf="ErrorText">{{ErrorText}}, try again after few minutes</div>
-        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-3">
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-3 m-2">
             <div *ngFor="let products of Product; trackBy: trackByProductId" class="col">
                 <div class="card h-100 product-card" tabindex="0" (keydown)="onCardKeydown($event, products)" [routerLink]="['/details', products.id, products.title]" data-tooltip="Click to see more">
                     <div class="card-body d-flex flex-column">
