@@ -10,22 +10,13 @@ a {
     text-decoration: none;
 }
 
-.more {
-    margin-left: 280px;
-}
-
-#wishlist {
-    margin-left: 90%;
-}
-
 #heart {
     font-size: 100px;
-    margin-left: 300px;
+    margin: 0;
 }
 
 #msg {
-    margin-top: -190px;
-    margin-left: -80px;
+    margin: 0 0 0 16px;
     font-size: 30px;
 }
 
@@ -35,18 +26,13 @@ a {
         max-width: 300px;
     }
 
-    .more {
-        margin-left: 150px;
-    }
-
     #heart {
         font-size: 100px;
-        margin-left: 100px;
+        margin: 0;
     }
 
     #msg {
-        margin-top: -190px;
-        margin-left: -120px;
+        margin: 0 0 0 12px;
         font-size: 22px;
     }
 }
@@ -57,18 +43,13 @@ a {
         max-width: 400px;
     }
 
-    .more {
-        margin-left: 200px;
-    }
-
     #heart {
         font-size: 100px;
-        margin-left: 100px;
+        margin: 0;
     }
 
     #msg {
-        margin-top: -190px;
-        margin-left: -120px;
+        margin: 0 0 0 12px;
         font-size: 22px;
     }
 }
@@ -76,12 +57,15 @@ a {
 @media only screen and (min-width:760px) and (max-width:900px) {
     #heart {
         font-size: 100px;
-        margin-left: 100px;
+        margin: 0;
     }
 
     #msg {
-        margin-top: -190px;
-        margin-left: -120px;
+        margin: 0 0 0 12px;
         font-size: 30px;
     }
 }
+
+/* Always show wishlist heart button in the favorites list */
+.products .quick-actions { opacity: 1 !important; }
+.products .quick-actions .quick-btn:first-child { display: none; }

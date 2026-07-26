@@ -1,5 +1,5 @@
 <div class="container">
-    <a routerLink="/products" class="mb-3" id="BackToProducts"><span class="bi bi-arrow-left"></span> Back to
+    <a [routerLink]="['/', ROUTES.PRODUCTS]" class="mb-3" id="BackToProducts"><span class="bi bi-arrow-left"></span> Back to
         Products</a>
     <div class="mb-3 d-flex justify-content-center align-items-center">
         <h1>{{product.category|uppercase}}</h1>

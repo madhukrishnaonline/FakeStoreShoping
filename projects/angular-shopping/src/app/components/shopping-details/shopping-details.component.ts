@@ -4,6 +4,7 @@ import { FakestoreProductContract } from '../Contracts/FakestoreProductContract'
 import { FakestoreServiceAPI } from '../Services/service.fakestoreapi';
 import { ShoppingCartServiceService } from '../Services/shopping-cart-service.service';
 import { NotificationService } from '../Services/notification.service';
+import { ROUTES } from '../../ROUTES';
 
 @Component({
   selector: 'app-shopping-details',
@@ -11,6 +12,7 @@ import { NotificationService } from '../Services/notification.service';
   styleUrls: ['./shopping-details.component.css']
 })
 export class ShoppingDetailsComponent implements OnInit {
+  public ROUTES = ROUTES;
   public product: FakestoreProductContract = {
     id: 0,
     title: '',

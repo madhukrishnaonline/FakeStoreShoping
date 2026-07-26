@@ -93,3 +93,11 @@ a{
         text-align: justify;
     }
 }
+
+/* Make quick-action buttons visible on the details page (override global hide) */
+.preview .quick-actions {
+    opacity: 1 !important;
+    position: static !important;
+    display: flex;
+    gap: 0.5rem;
+}

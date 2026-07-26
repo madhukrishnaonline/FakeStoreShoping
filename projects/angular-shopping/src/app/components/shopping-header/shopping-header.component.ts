@@ -6,6 +6,7 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { FakestoreServiceAPI } from '../Services/service.fakestoreapi';
 import { Observable } from 'rxjs';
 import { startWith, map } from 'rxjs/operators';
+import { ROUTES } from '../../ROUTES';
 
 
 @Component({
@@ -14,6 +15,8 @@ import { startWith, map } from 'rxjs/operators';
   styleUrls: ['./shopping-header.component.css']
 })
 export class ShoppingHeaderComponent implements OnInit {
+
+  public ROUTES = ROUTES;
 
   private wishSub?: Subscription;
 

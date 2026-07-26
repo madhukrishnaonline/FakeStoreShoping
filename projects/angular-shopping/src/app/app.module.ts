@@ -11,6 +11,7 @@ import { MatAutocompleteModule } from '@angular/material/autocomplete';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { SharedModule } from './components/shared/shared.module';
 import { ShoppingIndexComponent } from './components/shopping-index/shopping-index.component';
 import { ShoppingHeaderComponent } from './components/shopping-header/shopping-header.component';
 import { ShoppingMainComponent } from './components/shopping-main/shopping-main.component';
@@ -58,6 +59,7 @@ import { NotificationComponent } from './components/notification/notification.co
 
   ],
   imports: [
+    SharedModule,
     FormsModule,
     ReactiveFormsModule,
     BrowserModule,

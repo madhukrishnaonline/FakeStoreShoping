@@ -1,9 +1,10 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { FakestoreServiceAPI } from '../Services/service.fakestoreapi';
 import { FakestoreProductContract } from '../Contracts/FakestoreProductContract';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { ShoppingCartServiceService } from '../Services/shopping-cart-service.service';
 import { NotificationService } from '../Services/notification.service';
+import { ROUTES } from '../../ROUTES';
 
 @Component({
   selector: 'app-shopping-products',
@@ -11,13 +12,10 @@ import { NotificationService } from '../Services/notification.service';
   styleUrls: ['./shopping-products.component.css']
 })
 export class ShoppingProductsComponent implements OnInit {
+  public ROUTES = ROUTES;
   public Products: FakestoreProductContract[] = [];
-  ReverseOrder: FakestoreProductContract[] = [];
-  indicators: number[] = [];
 
-  index: number[] = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20]
-
-  constructor(private products: FakestoreServiceAPI, private route: ActivatedRoute, private cartService: ShoppingCartServiceService, private notifier: NotificationService, private router: Router) { }
+  constructor(private products: FakestoreServiceAPI, private cartService: ShoppingCartServiceService, private notifier: NotificationService, private router: Router) { }
 
   public ErrorText = null;
   public isFetching: boolean = false;
@@ -26,10 +24,6 @@ export class ShoppingProductsComponent implements OnInit {
     this.products.getProducts().subscribe(data => {
       this.Products = data;
       this.isFetching = false;
-      // this.products = data.map(product => ({
-      //   ...product,
-      //   quantity: 1 // Default quantity
-      // }));
     }, (error) => {
       this.ErrorText = error.statusText + error.message;
       this.isFetching = false;
@@ -38,15 +32,6 @@ export class ShoppingProductsComponent implements OnInit {
 
   ngOnInit(): void {
     this.getProducts();
-    this.products.sortProducts().subscribe(data => {
-      // this.ReverseOrder = data;
-      this.ReverseOrder = data.map(product => ({
-        ...product,
-        quantity: 1 // Default quantity
-      }));
-      // build indicators for carousel (one intro slide + reverseOrder items)
-      this.indicators = Array(this.ReverseOrder.length + 1).fill(0).map((_, i) => i);
-    });
   }
 
   public AddToCart(id: number) {
@@ -70,17 +55,12 @@ export class ShoppingProductsComponent implements OnInit {
   public onCardKeydown(event: KeyboardEvent, product: FakestoreProductContract) {
     const key = event.key;
     if (key === 'Enter') {
-      this.router.navigate(['/details', product.id, product.title]);
+      this.router.navigate(['/', ROUTES.DETAILS, product.id, product.title]);
       event.preventDefault();
     } else if (key.toLowerCase() === 'w') {
       this.AddToWishList(product.id);
       event.preventDefault();
     }
-  }
-
-  slideFade: boolean = false;
-  stopSlideFade() {
-
   }
 
   trackByProductId(index: number, product: FakestoreProductContract) {
