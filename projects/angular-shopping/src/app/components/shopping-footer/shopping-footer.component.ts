@@ -17,4 +17,13 @@ export class ShoppingFooterComponent {
   public whatsApp: string = `https://wa.me/9121493579`;
 
   public target: string = `_blank`;
+
+  // Redirect to user's mail client via mailto (opens mail composer)
+  public joinNewsletter(email?: string) {
+    const to = 'madhukrishnaonline@gmail.com';
+    const subject = encodeURIComponent('Newsletter signup');
+    const body = encodeURIComponent(email ? `Please add ${email} to the newsletter list.` : 'Please add me to the newsletter list.');
+    const href = `mailto:${to}?subject=${subject}&body=${body}`;
+    window.location.href = href;
+  }
 }
