@@ -24,6 +24,6 @@ export class ProductCarouselComponent implements OnInit {
   }
 
   navigateToDetail(product: FakestoreProductContract) {
-    if (product && product.id) this.router.navigate([ROUTES.DETAILS, product.id, product.title]);
+    if (product && product.id) this.router.navigate(['/', ROUTES.DETAILS, product.id, product.title]);
   }
 }

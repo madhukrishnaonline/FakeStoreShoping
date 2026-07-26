@@ -29,14 +29,18 @@ export class ShoppingAllProductsComponent implements OnInit {
       const detailsSeg = '/' + ROUTES.DETAILS.toLowerCase();
       const wishlistSeg = '/' + ROUTES.WISHLIST.toLowerCase();
       const limitedSeg = '/' + ROUTES.LIMITED.toLowerCase();
-      this.showCarousel = !(path.startsWith(detailsSeg) || path.startsWith(wishlistSeg) || path.startsWith(limitedSeg) || path.includes(limitedSeg + '/'));
+      const loginSeg = '/' + ROUTES.LOGIN.toLowerCase();
+      const addProductSeg = '/' + ROUTES.ADD_PRODUCT.toLowerCase();
+      this.showCarousel = !(path.startsWith(detailsSeg) || path.startsWith(wishlistSeg) || path.startsWith(limitedSeg) || path.includes(limitedSeg + '/') || path.startsWith(loginSeg) || path.startsWith(addProductSeg));
     });
     // initialize based on current url
     const cur = (this.router.url || '').toLowerCase();
     const detailsSeg = '/' + ROUTES.DETAILS.toLowerCase();
     const wishlistSeg = '/' + ROUTES.WISHLIST.toLowerCase();
     const limitedSeg = '/' + ROUTES.LIMITED.toLowerCase();
-    this.showCarousel = !(cur.startsWith(detailsSeg) || cur.startsWith(wishlistSeg) || cur.startsWith(limitedSeg) || cur.includes(limitedSeg + '/'));
+    const loginSeg = '/' + ROUTES.LOGIN.toLowerCase();
+    const addProductSeg = '/' + ROUTES.ADD_PRODUCT.toLowerCase();
+    this.showCarousel = !(cur.startsWith(detailsSeg) || cur.startsWith(wishlistSeg) || cur.startsWith(limitedSeg) || cur.includes(limitedSeg + '/') || cur.startsWith(loginSeg) || cur.startsWith(addProductSeg));
   }
 
   ngOnInit(): void {

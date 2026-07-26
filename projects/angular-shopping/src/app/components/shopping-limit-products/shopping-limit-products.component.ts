@@ -65,7 +65,7 @@ export class ShoppingLimitProductsComponent implements OnInit {
   public onCardKeydown(event: KeyboardEvent, product: FakestoreProductContract) {
     const key = event.key;
     if (key === 'Enter') {
-      this.router.navigate([ROUTES.DETAILS, product.id, product.title]);
+      this.router.navigate(['/', ROUTES.DETAILS, product.id, product.title]);
       event.preventDefault();
     } else if (key.toLowerCase() === 'w') {
       this.AddToWishList(product.id);
