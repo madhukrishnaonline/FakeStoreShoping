@@ -1,5 +1,5 @@
 <div>
-   <div class="row" *ngIf="!isFetching && !ErrorText">
+   <div class="row" *ngIf="showCarousel && !isFetching && !ErrorText">
         <div class="col-12">
             <app-product-carousel [items]="ReverseOrder" [indicators]="indicators"></app-product-carousel>
         </div>

@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Router, NavigationEnd } from '@angular/router';
+import { filter } from 'rxjs/operators';
+import { ROUTES } from '../../ROUTES';
 import { FakestoreProductContract } from '../Contracts/FakestoreProductContract';
 import { FakestoreServiceAPI } from '../Services/service.fakestoreapi';
 
@@ -13,10 +16,28 @@ export class ShoppingAllProductsComponent implements OnInit {
   public isFetching: boolean = false;
   public ErrorText: string | null = null;
 
+  public showCarousel: boolean = true;
+  public ROUTES = ROUTES;
+
   ReverseOrder: FakestoreProductContract[] = [];
   indicators: number[] = [];
 
-  constructor(private products: FakestoreServiceAPI) {}
+  constructor(private products: FakestoreServiceAPI, private router: Router) {
+    this.router.events.pipe(filter(e => e instanceof NavigationEnd)).subscribe((e: any) => {
+      const url = (e as NavigationEnd).urlAfterRedirects || (e as NavigationEnd).url;
+      const path = url.toLowerCase();
+      const detailsSeg = '/' + ROUTES.DETAILS.toLowerCase();
+      const wishlistSeg = '/' + ROUTES.WISHLIST.toLowerCase();
+      const limitedSeg = '/' + ROUTES.LIMITED.toLowerCase();
+      this.showCarousel = !(path.startsWith(detailsSeg) || path.startsWith(wishlistSeg) || path.startsWith(limitedSeg) || path.includes(limitedSeg + '/'));
+    });
+    // initialize based on current url
+    const cur = (this.router.url || '').toLowerCase();
+    const detailsSeg = '/' + ROUTES.DETAILS.toLowerCase();
+    const wishlistSeg = '/' + ROUTES.WISHLIST.toLowerCase();
+    const limitedSeg = '/' + ROUTES.LIMITED.toLowerCase();
+    this.showCarousel = !(cur.startsWith(detailsSeg) || cur.startsWith(wishlistSeg) || cur.startsWith(limitedSeg) || cur.includes(limitedSeg + '/'));
+  }
 
   ngOnInit(): void {
     this.products.sortProducts().subscribe(data => {
