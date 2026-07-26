@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FakestoreProductContract } from '../Contracts/FakestoreProductContract';
 import { ShoppingCartServiceService } from '../Services/shopping-cart-service.service';
 import { NotificationService } from '../Services/notification.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-shopping-search-results',
@@ -10,7 +11,7 @@ import { NotificationService } from '../Services/notification.service';
 })
 export class ShoppingSearchResultsComponent implements OnInit {
 
-  constructor(private cartService: ShoppingCartServiceService, private notifier: NotificationService) { }
+  constructor(private cartService: ShoppingCartServiceService, private notifier: NotificationService, private router: Router) { }
 
   public product: FakestoreProductContract[] | null = [];
   public TotalPrice: number = 0;
@@ -40,7 +41,7 @@ export class ShoppingSearchResultsComponent implements OnInit {
   public onCardKeydown(event: KeyboardEvent, product: FakestoreProductContract) {
     const key = event.key;
     if (key === 'Enter') {
-      this.AddToCart(product.id);
+      this.router.navigate(['/details', product.id, product.title]);
       event.preventDefault();
     } else if (key.toLowerCase() === 'w') {
       this.AddToWishList(product.id);

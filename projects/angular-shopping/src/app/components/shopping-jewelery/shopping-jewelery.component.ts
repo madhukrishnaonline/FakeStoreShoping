@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FakestoreProductContract } from '../Contracts/FakestoreProductContract';
 import { FakestoreServiceAPI } from '../Services/service.fakestoreapi';
 import { ShoppingCartServiceService } from '../Services/shopping-cart-service.service';
+import { Router } from '@angular/router';
 import { NotificationService } from '../Services/notification.service';
 
 @Component({
@@ -12,7 +13,7 @@ import { NotificationService } from '../Services/notification.service';
 export class ShoppingJeweleryComponent implements OnInit {
   public jewelery: FakestoreProductContract[] = [];
 
-  constructor(private fakestore: FakestoreServiceAPI, private cartService: ShoppingCartServiceService, private notifier: NotificationService) { }
+  constructor(private fakestore: FakestoreServiceAPI, private cartService: ShoppingCartServiceService, private notifier: NotificationService, private router: Router) { }
 
   public ErrorText = null;
   public isFetching: boolean = false;
@@ -57,7 +58,7 @@ export class ShoppingJeweleryComponent implements OnInit {
   public onCardKeydown(event: KeyboardEvent, product: FakestoreProductContract) {
     const key = event.key;
     if (key === 'Enter') {
-      this.AddToCart(product.id);
+      this.router.navigate(['/details', product.id, product.title]);
       event.preventDefault();
     } else if (key.toLowerCase() === 'w') {
       this.AddToWishList(product.id);

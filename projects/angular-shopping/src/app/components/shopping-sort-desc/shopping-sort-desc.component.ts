@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FakestoreProductContract } from '../Contracts/FakestoreProductContract';
 import { FakestoreServiceAPI } from '../Services/service.fakestoreapi';
 import { ShoppingCartServiceService } from '../Services/shopping-cart-service.service';
+import { Router } from '@angular/router';
 import { NotificationService } from '../Services/notification.service';
 
 @Component({
@@ -10,7 +11,7 @@ import { NotificationService } from '../Services/notification.service';
   styleUrls: ['./shopping-sort-desc.component.css']
 })
 export class ShoppingSortDescComponent implements OnInit {
-  constructor(private categories: FakestoreServiceAPI, private cartService: ShoppingCartServiceService, private notifier: NotificationService) {
+  constructor(private categories: FakestoreServiceAPI, private cartService: ShoppingCartServiceService, private notifier: NotificationService, private router: Router) {
 
   }
 
@@ -55,7 +56,7 @@ export class ShoppingSortDescComponent implements OnInit {
   public onCardKeydown(event: KeyboardEvent, product: FakestoreProductContract) {
     const key = event.key;
     if (key === 'Enter') {
-      this.AddToCart(product.id);
+      this.router.navigate(['/details', product.id, product.title]);
       event.preventDefault();
     } else if (key.toLowerCase() === 'w') {
       this.AddToWishList(product.id);
