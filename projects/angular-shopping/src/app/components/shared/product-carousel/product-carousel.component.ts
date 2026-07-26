@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { FakestoreProductContract } from '../../Contracts/FakestoreProductContract';
 import { Router } from '@angular/router';
+import { ROUTES } from '../../../ROUTES';
 
 @Component({
   selector: 'app-product-carousel',
@@ -23,6 +24,6 @@ export class ProductCarouselComponent implements OnInit {
   }
 
   navigateToDetail(product: FakestoreProductContract) {
-    if (product && product.id) this.router.navigate(['/details', product.id, product.title]);
+    if (product && product.id) this.router.navigate([ROUTES.DETAILS, product.id, product.title]);
   }
 }

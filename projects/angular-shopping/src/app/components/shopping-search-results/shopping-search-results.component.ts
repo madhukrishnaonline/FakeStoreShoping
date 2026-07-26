@@ -3,6 +3,7 @@ import { FakestoreProductContract } from '../Contracts/FakestoreProductContract'
 import { ShoppingCartServiceService } from '../Services/shopping-cart-service.service';
 import { NotificationService } from '../Services/notification.service';
 import { Router } from '@angular/router';
+import { ROUTES } from '../../ROUTES';
 
 @Component({
   selector: 'app-shopping-search-results',
@@ -10,6 +11,8 @@ import { Router } from '@angular/router';
   styleUrls: ['./shopping-search-results.component.css']
 })
 export class ShoppingSearchResultsComponent implements OnInit {
+
+  public ROUTES = ROUTES;
 
   constructor(private cartService: ShoppingCartServiceService, private notifier: NotificationService, private router: Router) { }
 
@@ -43,7 +46,7 @@ export class ShoppingSearchResultsComponent implements OnInit {
   public onCardKeydown(event: KeyboardEvent, product: FakestoreProductContract) {
     const key = event.key;
     if (key === 'Enter') {
-      this.router.navigate(['/details', product.id, product.title]);
+      this.router.navigate([ROUTES.DETAILS, product.id, product.title]);
       event.preventDefault();
     } else if (key.toLowerCase() === 'w') {
       this.AddToWishList(product.id);

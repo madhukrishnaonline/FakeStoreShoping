@@ -12,12 +12,11 @@ a {
 
 #heart {
     font-size: 100px;
-    margin-left: 300px;
+    margin: 0;
 }
 
 #msg {
-    margin-top: -190px;
-    margin-left: -80px;
+    margin: 0 0 0 16px;
     font-size: 30px;
 }
 
@@ -29,12 +28,11 @@ a {
 
     #heart {
         font-size: 100px;
-        margin-left: 100px;
+        margin: 0;
     }
 
     #msg {
-        margin-top: -190px;
-        margin-left: -120px;
+        margin: 0 0 0 12px;
         font-size: 22px;
     }
 }
@@ -47,12 +45,11 @@ a {
 
     #heart {
         font-size: 100px;
-        margin-left: 100px;
+        margin: 0;
     }
 
     #msg {
-        margin-top: -190px;
-        margin-left: -120px;
+        margin: 0 0 0 12px;
         font-size: 22px;
     }
 }
@@ -60,12 +57,11 @@ a {
 @media only screen and (min-width:760px) and (max-width:900px) {
     #heart {
         font-size: 100px;
-        margin-left: 100px;
+        margin: 0;
     }
 
     #msg {
-        margin-top: -190px;
-        margin-left: -120px;
+        margin: 0 0 0 12px;
         font-size: 30px;
     }
 }

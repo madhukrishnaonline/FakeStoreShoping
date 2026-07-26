@@ -11,28 +11,29 @@ import { ShoppingLimitProductsComponent } from './components/shopping-limit-prod
 import { ShoppingLimitedProductsComponent } from './components/shopping-limited-products/shopping-limited-products.component';
 import { ShoppingSearchResultsComponent } from './components/shopping-search-results/shopping-search-results.component';
 import { ShoppingFavProductsComponent } from './components/shopping-fav-products/shopping-fav-products.component';
+import { ROUTES } from './ROUTES';
 
 const routes: Routes = [
-  { path: "products", component: ShoppingProductsComponent },
-  { path: "electronics", loadChildren: () => import('./components/categories/electronics/electronics.module').then(m => m.ElectronicsModule) },
-  { path: "jewelery", loadChildren: () => import('./components/categories/jewelery/jewelery.module').then(m => m.JeweleryModule) },
-  { path: "mens", loadChildren: () => import('./components/categories/mens/mens.module').then(m => m.MensModule) },
-  { path: "womens", loadChildren: () => import('./components/categories/womens/womens.module').then(m => m.WomensModule) },
-  { path: "details/:id/:title", component: ShoppingDetailsComponent },
-  { path: "sorting/products", component: ShoppingSortDescComponent },
+  { path: ROUTES.PRODUCTS, component: ShoppingProductsComponent },
+  { path: ROUTES.ELECTRONICS, loadChildren: () => import('./components/categories/electronics/electronics.module').then(m => m.ElectronicsModule) },
+  { path: ROUTES.JEWELERY, loadChildren: () => import('./components/categories/jewelery/jewelery.module').then(m => m.JeweleryModule) },
+  { path: ROUTES.MENS, loadChildren: () => import('./components/categories/mens/mens.module').then(m => m.MensModule) },
+  { path: ROUTES.WOMENS, loadChildren: () => import('./components/categories/womens/womens.module').then(m => m.WomensModule) },
+  { path: ROUTES.DETAILS + '/:id/:title', component: ShoppingDetailsComponent },
+  { path: ROUTES.SORTING_PRODUCTS, component: ShoppingSortDescComponent },
   {
-    path: "limited", component: ShoppingLimitProductsComponent,
+    path: ROUTES.LIMITED, component: ShoppingLimitProductsComponent,
     children: [
-      { path: "products", component: ShoppingLimitedProductsComponent }
+      { path: ROUTES.PRODUCTS, component: ShoppingLimitedProductsComponent }
     ]
   },
-  { path: "add/product", component: ShoppingAddProductComponent, canActivate: [ShoppingUserRegisterGuard] },
-  { path: "login/user", component: ShoppingRegisterComponent },
-  { path: "search", component: ShoppingSearchResultsComponent },
-  { path: "WishList", component: ShoppingFavProductsComponent },
+  { path: ROUTES.ADD_PRODUCT, component: ShoppingAddProductComponent, canActivate: [ShoppingUserRegisterGuard] },
+  { path: ROUTES.LOGIN, component: ShoppingRegisterComponent },
+  { path: ROUTES.SEARCH, component: ShoppingSearchResultsComponent },
+  { path: ROUTES.WISHLIST, component: ShoppingFavProductsComponent },
   // Wild Card routes
-  { path: "", redirectTo: "products", pathMatch: "full" },
-  { path: "**", component: NotfoundComponent }
+  { path: '', redirectTo: ROUTES.PRODUCTS, pathMatch: 'full' },
+  { path: '**', component: NotfoundComponent }
 ];
 
 @NgModule({

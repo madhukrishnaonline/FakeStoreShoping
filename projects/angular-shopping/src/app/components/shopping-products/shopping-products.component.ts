@@ -4,6 +4,7 @@ import { FakestoreProductContract } from '../Contracts/FakestoreProductContract'
 import { Router } from '@angular/router';
 import { ShoppingCartServiceService } from '../Services/shopping-cart-service.service';
 import { NotificationService } from '../Services/notification.service';
+import { ROUTES } from '../../ROUTES';
 
 @Component({
   selector: 'app-shopping-products',
@@ -11,6 +12,7 @@ import { NotificationService } from '../Services/notification.service';
   styleUrls: ['./shopping-products.component.css']
 })
 export class ShoppingProductsComponent implements OnInit {
+  public ROUTES = ROUTES;
   public Products: FakestoreProductContract[] = [];
 
   constructor(private products: FakestoreServiceAPI, private cartService: ShoppingCartServiceService, private notifier: NotificationService, private router: Router) { }
@@ -53,7 +55,7 @@ export class ShoppingProductsComponent implements OnInit {
   public onCardKeydown(event: KeyboardEvent, product: FakestoreProductContract) {
     const key = event.key;
     if (key === 'Enter') {
-      this.router.navigate(['/details', product.id, product.title]);
+      this.router.navigate([ROUTES.DETAILS, product.id, product.title]);
       event.preventDefault();
     } else if (key.toLowerCase() === 'w') {
       this.AddToWishList(product.id);

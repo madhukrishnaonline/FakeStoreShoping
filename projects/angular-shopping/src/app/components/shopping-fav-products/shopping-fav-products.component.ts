@@ -1,10 +1,11 @@
 import { ShoppingCartServiceService } from './../Services/shopping-cart-service.service';
 import { FakestoreServiceAPI } from './../Services/service.fakestoreapi';
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { FakestoreProductContract } from '../Contracts/FakestoreProductContract';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NotificationService } from '../Services/notification.service';
+import { ROUTES } from '../../ROUTES';
 
 @Component({
   selector: 'app-shopping-fav-products',
@@ -12,6 +13,7 @@ import { NotificationService } from '../Services/notification.service';
   styleUrls: ['./shopping-fav-products.component.css']
 })
 export class ShoppingFavProductsComponent implements OnInit {
+  public ROUTES = ROUTES;
   public Products: FakestoreProductContract[] = [];
   private wishSub?: Subscription;
 
@@ -56,7 +58,7 @@ export class ShoppingFavProductsComponent implements OnInit {
   public onCardKeydown(event: KeyboardEvent, product: FakestoreProductContract) {
     const key = event.key;
     if (key === 'Enter') {
-      this.router.navigate(['/details', product.id, product.title]);
+      this.router.navigate([ROUTES.DETAILS, product.id, product.title]);
       event.preventDefault();
     } else if (key.toLowerCase() === 'w' || key.toLowerCase() === 'r') {
       this.UnList(product.id);

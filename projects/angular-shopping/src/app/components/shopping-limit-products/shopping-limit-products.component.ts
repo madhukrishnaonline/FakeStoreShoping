@@ -4,6 +4,7 @@ import { FakestoreProductContract } from '../Contracts/FakestoreProductContract'
 import { ShoppingCartServiceService } from '../Services/shopping-cart-service.service';
 import { Router } from '@angular/router';
 import { NotificationService } from '../Services/notification.service';
+import { ROUTES } from '../../ROUTES';
 
 @Component({
   selector: 'app-shopping-limit-products',
@@ -11,6 +12,7 @@ import { NotificationService } from '../Services/notification.service';
   styleUrls: ['./shopping-limit-products.component.css']
 })
 export class ShoppingLimitProductsComponent implements OnInit {
+  public ROUTES = ROUTES;
   constructor(private product: FakestoreServiceAPI, private cartService: ShoppingCartServiceService, private notifier: NotificationService, private router: Router) {
 
   }
@@ -63,7 +65,7 @@ export class ShoppingLimitProductsComponent implements OnInit {
   public onCardKeydown(event: KeyboardEvent, product: FakestoreProductContract) {
     const key = event.key;
     if (key === 'Enter') {
-      this.router.navigate(['/details', product.id, product.title]);
+      this.router.navigate([ROUTES.DETAILS, product.id, product.title]);
       event.preventDefault();
     } else if (key.toLowerCase() === 'w') {
       this.AddToWishList(product.id);

@@ -18,7 +18,7 @@
                 <input type="search" placeholder="Search for a product" [formControl]="SearchProduct"
                     [matAutocomplete]="auto" class="form-control example-input">
                 <button type="submit" class="btn btn-success input-group-text" [disabled]="SearchProduct.invalid"
-                    routerLink="search" (click)="Search()">
+                    [routerLink]="ROUTES.SEARCH" (click)="Search()">
                     Search
                 </button>
                 <mat-autocomplete #auto="matAutocomplete">
@@ -33,39 +33,39 @@
             <div class="flex">
                 <ul class="navbar-nav nav-underline mt-1" id="navigation">
                     <li class="nav-item">
-                        <a class="nav-link active" routerLink="products">PRODUCTS</a>
+                        <a class="nav-link active" [routerLink]="ROUTES.PRODUCTS">PRODUCTS</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" routerLink="electronics">ELECTRONICS</a>
+                        <a class="nav-link" [routerLink]="ROUTES.ELECTRONICS">ELECTRONICS</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" routerLink="jewelery">JEWELERY</a>
+                        <a class="nav-link" [routerLink]="ROUTES.JEWELERY">JEWELERY</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" routerLink="mens">MEN'S CLOTHING</a>
+                        <a class="nav-link" [routerLink]="ROUTES.MENS">MEN'S CLOTHING</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" routerLink="womens">WOMEN'S CLOTHING</a>
+                        <a class="nav-link" [routerLink]="ROUTES.WOMENS">WOMEN'S CLOTHING</a>
                     </li>
                 </ul>
                 <ul class="navbar-nav nav-underline" id="desktop">
                     <li class="nav-item">
-                        <a class="nav-link" routerLink="add/product">ADD A PRODUCT</a>
+                        <a class="nav-link" [routerLink]="ROUTES.ADD_PRODUCT">ADD A PRODUCT</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" routerLink="login/user">LOGIN</a>
+                        <a class="nav-link" [routerLink]="ROUTES.LOGIN">LOGIN</a>
                     </li>
                     <li class="nav-item" id="desc">
-                        <a class="nav-link" routerLink="sorting/products" [queryParams]="{sort:'desc'}">REVERSE
+                        <a class="nav-link" [routerLink]="ROUTES.SORTING_PRODUCTS" [queryParams]="{sort:'desc'}">REVERSE
                             ORDER</a>
                     </li>
                     <li class="nav-item" id="limit">
-                        <a class="nav-link" routerLink="limited">LIMIT PRODUCTS</a>
+                        <a class="nav-link" [routerLink]="ROUTES.LIMITED">LIMIT PRODUCTS</a>
                     </li>
                 </ul>
                 <ul class="navbar-nav wishlist" id="SearchWish">
                     <h1 class="me-5 mt-2">
-                        <a class="nav-link" routerLink="WishList"><span
+                        <a class="nav-link" [routerLink]="ROUTES.WISHLIST"><span
                                 class="bi bi-suit-heart position-relative"></span>
                             <span style="margin-inline-start:10px;"
                                 class="badge text-bg-dark position-absolute rounded-circle translate-middle">{{WishListItems.length}}</span></a>
@@ -74,7 +74,7 @@
                         <input type="search" placeholder="Search for a product" [formControl]="SearchProduct"
                             [matAutocomplete]="auto" class="form-control example-input">
                         <button type="submit" class="btn btn-success" [disabled]="SearchProduct.invalid"
-                            routerLink="search" (click)="Search()">
+                            [routerLink]="ROUTES.SEARCH" (click)="Search()">
                             Search
                         </button>
                         <mat-autocomplete #auto="matAutocomplete">
