@@ -1,56 +1,63 @@
 <footer class="footer-card">
 
-  <div class="footer-grid">
-
-    <div>
-      <div class="footer-brand">Lumière</div>
-      <div class="footer-brand-desc">A small-batch products &amp; lifestyle store built as an Angular + FakeStore API showcase project.</div>
-      <div class="footer-social">
-        <a [href]="github" [target]="target" aria-hidden="true" class="nav-link p-0 footer-icon"><i class="bi bi-github"></i></a>
-        <a [href]="linkedin" [target]="target" aria-hidden="true" class="nav-link p-0 footer-icon"><i class="bi bi-linkedin"></i></a>
-        <a [href]="instagram" [target]="target" aria-hidden="true" class="nav-link p-0 footer-icon"><i class="bi bi-instagram text-danger"></i></a>
-        <a [href]="mail" class="nav-link p-0 footer-icon"><i class="bi bi-envelope"></i></a>
+   <div class="footer-grid">
+      <div>
+         <div class="footer-brand">Lumière</div>
+         <div class="footer-brand-desc">A small-batch products &amp; lifestyle store built as an Angular + FakeStore API
+            showcase project.</div>
+         <div class="footer-social">
+            <a [href]="github" [target]="target" aria-hidden="true" class="nav-link p-0 footer-icon"><i
+                  class="bi bi-github"></i></a>
+            <a [href]="linkedin" [target]="target" aria-hidden="true" class="nav-link p-0 footer-icon"><i
+                  class="bi bi-linkedin"></i></a>
+            <a [href]="instagram" [target]="target" aria-hidden="true" class="nav-link p-0 footer-icon"><i
+               class="bi bi-instagram text-danger"></i></a>
+            <a [href]="phone" class="nav-link p-0 footer-icon" aria-label="Call"><i class="bi bi-telephone"></i></a>
+            <a [href]="mail" class="nav-link p-0 footer-icon" aria-label="Email"><i class="bi bi-envelope"></i></a>
+         </div>
       </div>
-    </div>
 
-    <div>
-      <div class="footer-section-title">SHOP</div>
-      <div class="footer-links">
-        <span>Jewelery</span>
-        <span>Electronics</span>
-        <span>Men's clothing</span>
-        <span>Women's clothing</span>
+      <div>
+         <div class="footer-section-title">SHOP</div>
+         <div class="footer-links">
+            <span>Jewelery</span>
+            <span>Electronics</span>
+            <span>Men's clothing</span>
+            <span>Women's clothing</span>
+         </div>
       </div>
-    </div>
 
-    <div>
-      <div class="footer-section-title">SUPPORT</div>
-      <div class="footer-links">
-        <span>Shipping info</span>
-        <span>Returns</span>
-        <span>FAQ</span>
-        <span>Contact</span>
+      <div>
+         <div class="footer-section-title">SUPPORT</div>
+         <div class="footer-links">
+            <span>Shipping info</span>
+            <span>Returns</span>
+            <span>FAQ</span>
+            <span>Contact</span>
+         </div>
       </div>
-    </div>
 
-    <div>
-      <div class="footer-section-title">STAY IN THE LOOP</div>
-      <div class="newsletter">
-        <input #newsletterEmail class="newsletter-input" placeholder="Email address" aria-label="email" />
-        <button type="button" class="newsletter-join" (click)="joinNewsletter(newsletterEmail.value); newsletterEmail.value=''">Join</button>
+      <div>
+         <div class="footer-section-title">STAY IN THE LOOP</div>
+         <div class="newsletter">
+            <input #newsletterEmail class="newsletter-input" placeholder="Email address" aria-label="email" />
+            <button type="button" class="newsletter-join"
+               (click)="joinNewsletter(newsletterEmail.value); newsletterEmail.value=''">Join</button>
+         </div>
+         <div style="font-size:11px; color:var(--text-muted); margin-top:8px;">Demo store — no real emails collected.
+         </div>
       </div>
-    </div>
 
-  </div>
+   </div>
 
-  <div class="footer-bottom">
-    <div>© 2026 Lumière — a FakeStore API demo project</div>
-    <div class="footer-author">
-      <span>Designed &amp; built by <strong class="author-name">Madhu Krishna</strong></span>
-      <a [href]="github" [target]="target" class="nav-link p-0"><i class="bi bi-github"></i></a>
-      <a [href]="linkedin" [target]="target" class="nav-link p-0"><i class="bi bi-linkedin"></i></a>
-      <a [href]="instagram" [target]="target" class="nav-link p-0"><i class="bi bi-instagram text-danger"></i></a>
-    </div>
-  </div>
+   <div class="footer-bottom">
+      <div>© 2026 Lumière — a FakeStore API demo project</div>
+      <div class="footer-author">
+         <span>Designed &amp; built by <strong class="author-name">Madhu Krishna</strong></span>
+         <a [href]="github" [target]="target" class="nav-link p-0"><i class="bi bi-github"></i></a>
+         <a [href]="linkedin" [target]="target" class="nav-link p-0"><i class="bi bi-linkedin"></i></a>
+         <a [href]="instagram" [target]="target" class="nav-link p-0"><i class="bi bi-instagram text-danger"></i></a>
+      </div>
+   </div>
 
 </footer>

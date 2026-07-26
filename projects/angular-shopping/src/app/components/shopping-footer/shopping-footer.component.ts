@@ -12,7 +12,7 @@ export class ShoppingFooterComponent {
   public github:string = 'https://github.com/madhukrishnaonline';
 
   public mail: string = `mailto:madhukrishnaonline@gmail.com`;
-  public phone: string = `tel:+91 9121493579`;
+  public phone: string = `tel:+919121493579`;
 
   public whatsApp: string = `https://wa.me/9121493579`;
 
